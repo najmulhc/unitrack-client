@@ -1,7 +1,15 @@
-export default function App() {
+import React from "react";
+import Navbar from "./components/Navbar";
+import LandingFooter from "./components/footers/LandingFooter";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/routes";
+
+function App() {
   return (
-    <div>
-      <h1 className="text-red-400">Lorem ipsum dolor sot</h1>
-    </div>
-  )
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
+
+export default App;

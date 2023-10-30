@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import PageContainer from "../../components/PageContainer";
 
  
 
@@ -11,7 +12,7 @@ const Login = () => {
   };
 
   return (
-    <main>
+    <PageContainer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="email" 
@@ -27,7 +28,7 @@ const Login = () => {
         />
         <button type="submit">Log In</button>
       </form>
-    </main>
+    </PageContainer>
   );
 };
 

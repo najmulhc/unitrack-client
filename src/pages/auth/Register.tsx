@@ -1,41 +1,74 @@
 import { useForm } from "react-hook-form";
+import {useState} from 'react'
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [error, setError] = useState<string>("")
 
-  const onSubmit = (data: any) => {
-    const {  password, confirmPassword } = data;
+  const onSubmit = (data) => {
+    const { password, confirmPassword } = data;
     if (password !== confirmPassword) {
-      console.log("The passwords did not matched");
+      setError("The passwords did not matched");
     } else {
-      console.log(data);
+       setError("")
     }
     reset();
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="email"
-          id="email-input"
-          placeholder="Enter email"
-          {...register("email")}
-        />
-        <input
-          type="password"
-          id="password-input"
-          placeholder="Enter Password"
-          {...register("password")}
-        />
-        <input
-          type="password"
-          id="confirm-password-input"
-          placeholder="Enter confirm Password"
-          {...register("confirmPassword")}
-        />
-        <button type="submit">Register</button>
-      </form>
+    <main className="min-h-screen flex justify-center items-center ">
+      <div className="card w-[300px] bg-neutral p-4 gap-4 text-center ">
+        <h2 className="text-2xl">Register</h2>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-control">
+            <label className="label" htmlFor="email">
+              Enter email address
+            </label>
+            <input
+              className="input bg-base w-full "
+              type="email"
+              id="email-input"
+              placeholder="john@placeholder.com"
+              {...register("email")}
+            />
+          </div>
+          <div className="form-control">
+            <label className="label" htmlFor="password">
+              Create a password
+            </label>
+            <input
+              className="input w-full  input-bordered"
+              type="password"
+              id="password"
+              placeholder="*******"
+              {...register("password")}
+            />
+          </div>
+          <div className="form-control">
+            <label className="label" htmlFor="confirm-password">
+              Enter email address
+            </label>
+            <input
+              className="input w-full "
+              type="password"
+              id="confirm-password"
+              placeholder="*******"
+              {...register("confirmPassword")}
+            />
+            <label className="label" htmlFor="input">
+              <span className="label-text text-error">{error && error}</span>
+            </label>
+          </div>
+
+          <button className="btn btn-primary w-full" type="submit">
+            Register
+          </button>
+
+          <p>Already registered? <Link className="underline text-primary" to="/login"> Login</Link></p>
+
+        </form>
+      </div>
     </main>
   );
 };

@@ -1,8 +1,11 @@
- 
+import PageContainer from "../components/PageContainer";
+
 const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <PageContainer>
+      <h1>This is heading one</h1>
+    </PageContainer>
+  );
+};
 
-export default Home
+export default Home;
