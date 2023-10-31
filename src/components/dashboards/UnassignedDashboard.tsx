@@ -1,8 +1,5 @@
-import { useDispatch } from "react-redux";
-import { setRole } from "../../redux/reudcers/role";
 import { useSelector } from "react-redux";
 import { Store } from "../../redux/store";
-import DashboardNavbar from "../navbars/DashboardNavbar";
 import DashboardContainer from "../containers/DashboardContainer";
 import { useNavigate } from "react-router";
 

@@ -8,7 +8,7 @@ const Register = () => {
   const [error, setError] = useState<string>("");
   const { signUp, authError } = useAuth();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     const { password, confirmPassword, email } = data;
     if (password !== confirmPassword) {
       setError("The passwords did not matched");
