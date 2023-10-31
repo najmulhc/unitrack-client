@@ -1,15 +1,14 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import LandingFooter from "./components/footers/LandingFooter";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/routes";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-function App() {
+const App = () => {
   return (
-    <>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </>
+    </Provider>
   );
-}
+};
 
 export default App;
