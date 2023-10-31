@@ -1,9 +1,13 @@
+import DashboardContainer from "../containers/DashboardContainer";
+
 const TeacherDashboard = () => {
-    return (
-        <main>
-            Teacher Dashboard
-        </main>
-    )
+  return (
+    <DashboardContainer>
+      <main>
+        <p>Teacher dashboard</p>
+      </main>
+    </DashboardContainer>
+  );
 };
 
 export default TeacherDashboard;

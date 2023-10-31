@@ -26,7 +26,10 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to='/login'>Item 1</Link>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
               <a>Parent</a>
@@ -44,12 +47,17 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link to='/' className="btn btn-ghost normal-case text-xl">Unirack</Link>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          Unirack
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to='/login'>Item 1</Link>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
           <li tabIndex={0}>
             <details>
@@ -70,7 +78,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to='/register' className="btn">Register</Link>
+        <Link to="/register" className="btn">
+          Register
+        </Link>
       </div>
     </nav>
   );

@@ -1,19 +1,20 @@
 import { useForm } from "react-hook-form";
-import {useState} from 'react'
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-  const { register, handleSubmit, reset } = useForm();
-  const [error, setError] = useState<string>("")
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState<string>("");
+  const { signUp, authError } = useAuth();
 
   const onSubmit = (data) => {
-    const { password, confirmPassword } = data;
+    const { password, confirmPassword, email } = data;
     if (password !== confirmPassword) {
       setError("The passwords did not matched");
     } else {
-       setError("")
+      signUp(email as string, password as string);
     }
-    reset();
   };
 
   return (
@@ -57,7 +58,9 @@ const Register = () => {
               {...register("confirmPassword")}
             />
             <label className="label" htmlFor="input">
-              <span className="label-text text-error">{error && error}</span>
+              <span className="label-text text-error">
+                {error && error} {authError && authError}
+              </span>
             </label>
           </div>
 
@@ -65,8 +68,13 @@ const Register = () => {
             Register
           </button>
 
-          <p>Already registered? <Link className="underline text-primary" to="/login"> Login</Link></p>
-
+          <p>
+            Already registered?{" "}
+            <Link className="underline text-primary" to="/login">
+              {" "}
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </main>

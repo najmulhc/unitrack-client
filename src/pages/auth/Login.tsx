@@ -1,14 +1,17 @@
 import { useForm } from "react-hook-form";
-import {useState} from "react"
+import { useState } from "react";
 import { Link } from "react-router-dom";
- 
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
-  const [error, setError] = useState<string>("")
+ 
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const { login, authError } = useAuth();
+
+  const onSubmit = async (data: any) => {
+    const { email, password } = data;
+    await login(email, password);
     reset();
   };
 
@@ -26,7 +29,7 @@ const Login = () => {
               type="email"
               id="email-input"
               placeholder="john@placeholder.com"
-              {...register("email")}
+              {...register("email")} required
             />
           </div>
           <div className="form-control">
@@ -34,20 +37,26 @@ const Login = () => {
               Enter password
             </label>
             <input
-              className="input w-full  input-bordered"
+              className={`input w-full  input-bordered ${authError && "input-error"}`}
               type="password"
               id="password"
               placeholder="*******"
               {...register("password")}
+              required
             />
+            <label className="label" htmlFor="input">
+              <span className="label-text text-error">
+                 {authError && authError}
+              </span>
+            </label>
           </div>
-          
+
           <button className="btn btn-primary w-full" type="submit">
             Log in
           </button>
 
           <p>
-          New here?{" "}
+            New here?{" "}
             <Link className="underline text-primary" to="/register">
               {" "}
               Register now

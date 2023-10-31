@@ -1,6 +1,10 @@
- 
+import DashboardContainer from "../containers/DashboardContainer"; 
 const StudentDashboard = () => {
-  return <div>StudentDashboard</div>;
+  return (
+    <DashboardContainer>
+      <h1>Student dashboard page</h1>
+    </DashboardContainer>
+  );
 };
 
 export default StudentDashboard;
