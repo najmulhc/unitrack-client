@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 
 const useAuth = () => {
-  //   const token: string = localStorage.getItem("authToken") as string;
+  const token: string = localStorage.getItem("authToken") as string;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [authError, setAuthError] = useState<string>("");
 
   const afterAuth = (data: any) => {
-    localStorage.setItem("authToken", data.token);
+    data.token && localStorage.setItem("authToken", data.token);
     const { role } = data.user;
     dispatch(setRole(role));
     navigate("/dashboard");
@@ -50,7 +50,22 @@ const useAuth = () => {
   const login = async (email: string, password: string) => {
     await fetchAuthData("/login", email, password);
   };
-  return { signUp, login, authError };
+  const loginWithToken = async () => {
+    const response = await fetch("https://unitracks.onrender.com/user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: `bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    if (data.success) {
+      afterAuth(data);
+    } else {
+      setAuthError(data.message);
+    }
+  };
+  return { signUp, login, authError, loginWithToken };
 };
 
 export default useAuth;
