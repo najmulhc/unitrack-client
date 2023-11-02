@@ -1,6 +1,7 @@
 
 import DashboardContainer from "../containers/DashboardContainer";
 import { useState } from "react";
+import DashboardSidebar from "./sidebar/DashboardSidebar";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -47,7 +48,8 @@ const AdminDashboard = () => {
 
   return (
     <DashboardContainer>
-      <main>
+      <DashboardSidebar/>
+      <section className="p-4">
         <button
           className="btn btn-primary"
           onClick={() => {
@@ -113,7 +115,7 @@ const AdminDashboard = () => {
             ))}
           </tbody>
         </table>
-      </main>{" "}
+      </section>{" "}
     </DashboardContainer>
   );
 };
