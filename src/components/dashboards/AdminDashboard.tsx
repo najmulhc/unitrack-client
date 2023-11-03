@@ -25,7 +25,9 @@ const AdminDashboard = () => {
     }
   };
 
-  const updateUser = async ({userEmail, userRole}) => {
+  const updateUser = async ({userEmail, userRole}: {
+    userEmail: string, userRole: string
+  }) => {
    const response = await fetch(
      "https://unitracks.onrender.com/user/update-user-role",
      {
