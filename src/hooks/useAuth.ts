@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { setRole } from "../redux/reudcers/role";
+import { resetRole, setRole } from "../redux/reudcers/role";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { setUser } from "../redux/reudcers/user";
+import { resetUser, setUser } from "../redux/reudcers/user";
 
 const useAuth = () => {
   const token: string = localStorage.getItem("authToken") as string;
@@ -14,9 +14,11 @@ const useAuth = () => {
     data.token && localStorage.setItem("authToken", data.token);
     const { role, email } = data.user;
     dispatch(setRole(role));
-    dispatch(setUser({
-      email
-    }))
+    dispatch(
+      setUser({
+        email,
+      })
+    );
     navigate("/dashboard");
   };
 
@@ -69,7 +71,14 @@ const useAuth = () => {
       setAuthError(data.message);
     }
   };
-  return { signUp, login, authError, loginWithToken };
+
+  const logOut = () => {
+    dispatch(resetRole());
+    dispatch(resetUser());
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
+  return { signUp, login, authError, loginWithToken, logOut };
 };
 
 export default useAuth;

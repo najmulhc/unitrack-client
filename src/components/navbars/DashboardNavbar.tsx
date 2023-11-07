@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux";
 import { Store } from "../../redux/store";
+import useAuth from "../../hooks/useAuth";
 
 const DashboardNavbar = () => {
-  const {email} = useSelector((state:Store) => state.user)
+  const { email } = useSelector((state: Store) => state.user);
+  const { logOut } = useAuth();
   return (
     <div className="navbar bg-secondary">
       <div className="flex-1">
@@ -63,10 +65,14 @@ const DashboardNavbar = () => {
               <a>Logout</a>
             </li>
           </ul>
+          <button className="btn btn-primary" onClick={logOut}>
+            {" "}
+            Log out
+          </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default DashboardNavbar
+export default DashboardNavbar;

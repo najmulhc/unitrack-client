@@ -6,3 +6,7 @@ export type IconProps = {
   height?: string | number;
   color?: string;
 };
+
+export type User = {
+  email: string
+}

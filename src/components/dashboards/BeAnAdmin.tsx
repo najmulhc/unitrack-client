@@ -14,7 +14,7 @@ const BeAnAdmin = () => {
     const { key } = data;
     const token = localStorage.getItem("authToken");
     const response = await fetch(
-      `http://localhost:6969/user/be-an-admin`,
+      `https://unitracks.onrender.com/user/be-an-admin`,
       {
         method: "POST",
         headers: {
