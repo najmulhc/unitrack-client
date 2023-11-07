@@ -10,10 +10,10 @@ const Home = () => {
 
   useEffect(() => {
     loginWithToken();
-  }, [loginWithToken]);
+  }, []);
   return (
     <PageContainer>
-      <h1>This is heading one</h1>
+      <h1>This is heading </h1>
       <h2>{role}</h2>
     </PageContainer>
   );

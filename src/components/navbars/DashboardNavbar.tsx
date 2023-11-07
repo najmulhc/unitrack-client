@@ -1,5 +1,8 @@
+import { useSelector } from "react-redux";
+import { Store } from "../../redux/store";
 
 const DashboardNavbar = () => {
+  const {email} = useSelector((state:Store) => state.user)
   return (
     <div className="navbar bg-secondary">
       <div className="flex-1">
@@ -40,10 +43,8 @@ const DashboardNavbar = () => {
           </div>
         </div>
         <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
+          <label tabIndex={0} className="">
+            <h1>{email}</h1>
           </label>
           <ul
             tabIndex={0}

@@ -1,6 +1,6 @@
-const CalendarIcon = ({className, width, height }:{
-    className?: string, width?:string | number, height?: string | number, color?: string
-}) => {
+import { IconProps } from "../../types";
+
+const CalendarIcon: React.FC<IconProps> = ({className, width, height } ) => {
     return (
       <svg
       className={className}

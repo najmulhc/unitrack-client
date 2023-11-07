@@ -11,10 +11,11 @@ import { useEffect } from "react";
 const Dashboard = () => {
   const { role }: { role: Role } = useSelector((state: Store) => state.role);
   const { loginWithToken } = useAuth();
+ 
 
   useEffect(() => {
     loginWithToken();
-  }, [loginWithToken]);
+  }, []);
 
   if (role === "admin") {
     return <AdminDashboard />;
@@ -22,7 +23,7 @@ const Dashboard = () => {
     return <StudentDashboard />;
   } else if (role === "teacher") {
     return <TeacherDashboard />;
-  } else {
+  } else if(role === "unassigned") {
     return <UnassignedDashboard />;
   }
 };
