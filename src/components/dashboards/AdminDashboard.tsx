@@ -3,7 +3,7 @@ import DashboardContainer from "../containers/DashboardContainer";
 import DashboardSidebar from "./sidebar/DashboardSidebar";
 
 const AdminDashboard = () => {
-  const { getAllusers, users, updateUser } = useAdmin();
+  const { getAllusers, users, updateUser, deleteUser } = useAdmin();
   return (
     <DashboardContainer>
       <DashboardSidebar />
@@ -21,6 +21,7 @@ const AdminDashboard = () => {
             <th>Email Address</th>
             <th>role</th>
             <th>Set Role</th>
+            <th>Action</th>
           </thead>
           <tbody>
             {users.map((user: any) => (
@@ -68,6 +69,18 @@ const AdminDashboard = () => {
                   ) : (
                     <span className="badge badge-info"> Already Assigned</span>
                   )}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-error"
+                    onClick={() => {
+                      deleteUser({
+                        email: user.email,
+                      });
+                    }}
+                  >
+                    Delete user
+                  </button>
                 </td>
               </tr>
             ))}

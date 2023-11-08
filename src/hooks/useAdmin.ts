@@ -47,10 +47,28 @@ const useAdmin = () => {
     }
   };
 
+  const deleteUser = async (deletedUser: { email: string }) => {
+    const response = await fetch("https://unitracks.onrender.com/user", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: `bearer ${token}`,
+      },
+      body: JSON.stringify({
+        deletedUser,
+      }),
+    });
+    const data = await response.json();
+    if (data.users) {
+      setUsers(data.users);
+    }
+  };
+
   return {
     getAllusers,
     users,
     updateUser,
+    deleteUser,
   };
 };
 
