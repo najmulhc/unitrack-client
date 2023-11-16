@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import roleReducer from "./reudcers/role";
-import userReducer from "./reudcers/user"
+import userReducer from "./reudcers/user";
+import studentReducer from "./reudcers/student";
 
 const store = configureStore({
   reducer: {
     role: roleReducer,
-    user: userReducer
+    user: userReducer,
+    student: studentReducer,
   },
 });
 
