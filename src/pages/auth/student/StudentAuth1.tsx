@@ -5,7 +5,12 @@ interface FormData {
 }
 
 const StudentAuth1 = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data: FormData) => {
     console.log(data);
     reset();
@@ -26,22 +31,44 @@ const StudentAuth1 = () => {
               <span className="label-text">First Name</span>
             </label>
             <input
-              className="input input-bordered w-full"
+              className={`input input-bordered ${
+                errors.firstName && "border-error"
+              } w-full`}
               id="firstName"
-              {...register("firstName")}
+              {...register("firstName", {
+                required: "We need your firstname",
+              })}
               placeholder="John"
             />
+            {errors.firstName && (
+              <label className="label">
+                <span className="label-text-alt text-error">
+                  {errors?.firstName?.message}
+                </span>{" "}
+              </label>
+            )}
           </div>
           <div className="w-full">
             <label htmlFor="lastName" className="label">
               <span className="label-text">Last Name</span>
             </label>
             <input
-              className="input input-bordered w-full"
+              className={`input input-bordered ${
+                errors.lastName && "border-error"
+              } w-full`}
               id="lastName"
-              {...register("LastName")}
+              {...register("lastName", {
+                required: "We need your last name."
+              })}
               placeholder="Doe"
             />
+            {errors.lastName && (
+              <label className="label">
+                <span className="label-text-alt text-error">
+                  {errors?.lastName?.message}
+                </span>{" "}
+              </label>
+            )}
           </div>
         </div>
         <div className="w-full justify-between flex gap-4 mb-4">
@@ -51,24 +78,48 @@ const StudentAuth1 = () => {
             </label>
             <input
               type="date"
-              className="input input-date input-bordered w-full"
+              className={`input input-bordered ${
+                errors.dateOfBirth && "border-error"
+              } w-full`}
               id="dateOfBirth"
-              {...register("dateOfBirth")}
+              {...register("dateOfBirth", {
+                required:"Please write your date of birth."
+              })}
               placeholder="Doe"
             />
+            {errors.dateOfBirth && (
+              <label className="label">
+                <span className="label-text-alt text-error">
+                  {errors?.dateOfBirth?.message}
+                </span>{" "}
+              </label>
+            )}
           </div>
           <div className="w-full">
             <label htmlFor="bloodGroup" className="label">
               <span className="label-text">Blood Group</span>
             </label>
             <input
-              className="input input-date input-bordered w-full"
+              className={`input input-bordered ${
+                errors.bloodGroup && "border-error"
+              } w-full`}
               id="bloodGroup"
               {...register("bloodGroup", {
-                pattern: /^(A|B|AB|O)(\+|-)$/,
+                pattern: {
+                  value: /^(A|B|AB|O)(\+|-)$/,
+                  message: "It is not a valid blood group.",
+                },
+                required: "We need your blood group info.",
               })}
               placeholder="Doe"
             />
+            {errors.bloodGroup && (
+              <label className="label">
+                <span className="label-text-alt text-error">
+                  {errors?.bloodGroup?.message}
+                </span>{" "}
+              </label>
+            )}
           </div>
         </div>
         <button type="submit" className="btn btn-primary">
