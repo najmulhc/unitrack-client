@@ -14,7 +14,6 @@ export const appApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    // all query and mutation end points will be here.
     getUser: builder.query({
       query: () => "/users",
       providesTags: ["user"],
@@ -66,6 +65,34 @@ export const appApi = createApi({
       }),
       invalidatesTags: ["user"],
     }),
+
+    // student related queries/mutations
+
+    getStudent: builder.query({
+      query: () => "/students",
+      providesTags: ["students"],
+    }),
+    postStudentPhaseOne: builder.mutation({
+      query: (data: {
+        firstName: string;
+        lastname: string;
+        dateOfBirth: number;
+        bloodGroup: "A+" | "A-" | "B+" | "B-" | "O+" | "O-" | "AB+" | "AB-";
+      }) => ({
+        url: "/students/auth-phase/one",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["students"],
+    }),
+    postStudentPhaseTwo: builder.mutation({
+      query: (data: { roll: string; session: "2020" | "2019" }) => ({
+        url: "/students/auth-phase/two",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["students"],
+    }),
   }),
 });
 
@@ -77,4 +104,7 @@ export const {
   useGetAllUsersQuery,
   useUpdateUserRoleMutation,
   useBeAnAdminMutation,
+  useGetStudentQuery,
+  usePostStudentPhaseOneMutation,
+  usePostStudentPhaseTwoMutation
 } = appApi;
