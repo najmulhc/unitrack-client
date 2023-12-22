@@ -25,6 +25,7 @@ const StudentAuth1 = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="card w-[80%] bg-base card-bordered p-6 "
       >
+       
         <div className="w-full justify-between flex gap-4 mb-4">
           <div className="w-full">
             <label htmlFor="firstName" className="label">

@@ -28,7 +28,7 @@ const useAuth = () => {
     password: string
   ) => {
     const response = await fetch(
-      `https://unitracks.onrender.com/user${route}`,
+      `${import.meta.env.VITE_SERVER_URL}/user${route}`,
       {
         method: "POST",
         headers: {

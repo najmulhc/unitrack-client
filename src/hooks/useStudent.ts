@@ -1,13 +1,12 @@
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Store } from "redux";
+ 
+import { useNavigate } from "react-router"; 
 
 const useStudent = () => {
   const navigate = useNavigate(); // route handler
   const studentAuthHandler = (authPhase: string) => {
-    if (authPhase === "1") {
+    if (authPhase === "one") {
       navigate("/student/register/one");
-    } else if (authPhase === "2") {
+    } else if (authPhase === "two") {
       navigate("/student/register/two");
     } else if (authPhase === "completed") {
       navigate("/dashboard");

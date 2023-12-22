@@ -1,20 +1,36 @@
-import { useSelector } from "react-redux";
 import PageContainer from "../components/containers/PageContainer";
-import { Store } from "../redux/store";
-import useAuth from "../hooks/useAuth";
-import { useEffect } from "react";
+import { useGetUserQuery, useLoginMutation } from "../redux/services/apiSlice";
 
 const Home = () => {
-  const { role } = useSelector((state: Store) => state.role);
-  const { loginWithToken } = useAuth();
+  const [login, { data: loginData, error: loginError }] = useLoginMutation();
+  const { data: userData, error: userError } = useGetUserQuery();
 
-  useEffect(() => {
-    loginWithToken();
-  }, [loginWithToken]);
+  if (loginData) {
+    console.log(loginData);
+    localStorage.setItem("authToken", loginData.token);
+  }
+  if (loginError) {
+    console.log(loginError);
+  }
+  if (userData) {
+    console.log(userData);
+  }
+  if (userError) {
+    console.log(userError);
+  }
   return (
     <PageContainer>
-      <h1>This is heading </h1>
-      <h2>{role}</h2>
+      <p>Testing</p>
+      <button
+        onClick={() => {
+          login({
+            email: "admin@unitracks.com",
+            password: "",
+          });
+        }}
+      >
+        login
+      </button>
     </PageContainer>
   );
 };
