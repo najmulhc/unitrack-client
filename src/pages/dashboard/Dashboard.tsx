@@ -1,29 +1,38 @@
-import { useSelector } from "react-redux";
-import { Role } from "../../types";
 import AdminDashboard from "../../components/dashboards/AdminDashboard";
 import StudentDashboard from "../../components/dashboards/StudentDashboard";
 import TeacherDashboard from "../../components/dashboards/TeacherDashboard";
 import UnassignedDashboard from "../../components/dashboards/UnassignedDashboard";
-import { Store } from "../../redux/store";
-import useAuth from "../../hooks/useAuth";
-import { useEffect } from "react";
+import { useGetUserQuery } from "../../redux/services/apiSlice";
 
 const Dashboard = () => {
-  const { role }: { role: Role } = useSelector((state: Store) => state.role);
-  const { loginWithToken } = useAuth();
- 
+  const { isLoading, data: userData, error } = useGetUserQuery(true);
 
-  useEffect(() => {
-    loginWithToken();
-  }, []);
+  if (isLoading) {
+    return (
+      <div>
+        <h1>Loading</h1>
+      </div>
+    );
+  }
 
+  if (userData) {
+    console.log(userData);
+  }
+  if (error) {
+    return (
+      <div>
+        <h1>THere is an error</h1>
+      </div>
+    );
+  }
+  const role = userData.data.user.role;
   if (role === "admin") {
     return <AdminDashboard />;
   } else if (role === "student") {
     return <StudentDashboard />;
   } else if (role === "teacher") {
     return <TeacherDashboard />;
-  } else if(role === "unassigned") {
+  } else if (role === "unassigned") {
     return <UnassignedDashboard />;
   }
 };

@@ -1,21 +1,39 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../../redux/services/apiSlice";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState<string>("");
-  const { signUp, authError } = useAuth();
+  const navigate = useNavigate();
+  const [registerNewUser, { isLoading, error: regError, data: registerData }] =
+    useRegisterMutation();
 
-  const onSubmit = (data:any) => {
+  const onSubmit = (data: {
+    password: string;
+    confirmPassword: string;
+    email: string;
+  }) => {
     const { password, confirmPassword, email } = data;
     if (password !== confirmPassword) {
       setError("The passwords did not matched");
     } else {
-      signUp(email as string, password as string);
+      registerNewUser({
+        email: email,
+        password: password,
+      });
     }
   };
+
+  if (registerData) {
+    const { token } = registerData;
+    localStorage.setItem("authToken", token);
+    navigate("/dashboard");
+  }
+  if (regError) {
+    console.log(regError);
+  }
 
   return (
     <main className="min-h-screen flex justify-center items-center ">
@@ -58,14 +76,15 @@ const Register = () => {
               {...register("confirmPassword")}
             />
             <label className="label" htmlFor="input">
-              <span className="label-text text-error">
-                {error && error} {authError && authError}
-              </span>
+              <span className="label-text text-error">{error && error}</span>
             </label>
           </div>
 
-          <button className="btn btn-primary w-full" type="submit">
-            Register
+          <button
+            className={`btn ${isLoading && "btn-disabled"} btn-primary w-full`}
+            type="submit"
+          >
+            {isLoading ? "Loading..." : "Register"}
           </button>
 
           <p>

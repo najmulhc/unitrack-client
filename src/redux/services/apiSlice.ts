@@ -19,7 +19,7 @@ export const appApi = createApi({
       providesTags: ["user"],
     }),
     login: builder.mutation({
-      query: (data: { email: string; password: string }) => ({
+      query: (data: { email: string, password: string }) => ({
         url: "/users/login",
         method: "POST",
         body: data,
@@ -93,6 +93,26 @@ export const appApi = createApi({
       }),
       invalidatesTags: ["students"],
     }),
+    getTeacher: builder.query({
+      query: () => "/teachers",
+      providesTags: ["teachers"],
+    }),
+    updateTeacher: builder.mutation({
+      query: (data) => ({
+        url: "/teachers",
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["teachers"],
+    }),
+    postCourse: builder.mutation({
+      query: (data) => ({
+        url: "/courses",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["courses"],
+    }),
   }),
 });
 
@@ -106,5 +126,8 @@ export const {
   useBeAnAdminMutation,
   useGetStudentQuery,
   usePostStudentPhaseOneMutation,
-  usePostStudentPhaseTwoMutation
+  usePostStudentPhaseTwoMutation,
+  useGetTeacherQuery,
+  useUpdateTeacherMutation,
+  usePostCourseMutation
 } = appApi;

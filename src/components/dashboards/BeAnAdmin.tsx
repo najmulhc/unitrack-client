@@ -1,40 +1,28 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { setRole } from "../../redux/reudcers/role";
 import { useNavigate } from "react-router";
+import { useBeAnAdminMutation } from "../../redux/services/apiSlice";
 
 const BeAnAdmin = () => {
   const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch();
+  const [beAnAdmin, { isLoading, error, data }] = useBeAnAdminMutation();
   const navigate = useNavigate();
-  const [error, setError] = useState<string>("");
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { key: string }) => {
     const { key } = data;
-    const token = localStorage.getItem("authToken");
-    const response = await fetch(
-      `https://unitracks.onrender.com/user/be-an-admin`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "Application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          key,
-        }),
-      }
-    );
-    const result = await response.json();
-    if (result.success) {
-      const { role } = result.user;
-      dispatch(setRole(role));
-      navigate("/dashboard");
-    } else {
-      setError(result.message);
-    }
+    beAnAdmin({
+      key,
+    });
   };
+
+  if (data) {
+    const { token } = data.data;
+    localStorage.setItem("authToken", token);
+    navigate("/dashboard");
+  }
+  if (error) {
+    console.log(error);
+  }
+
   return (
     <main className="min-h-screen flex justify-center items-center ">
       <div className="card w-[300px] bg-neutral p-4 gap-4 text-center ">
@@ -55,12 +43,16 @@ const BeAnAdmin = () => {
               required
             />
             <label className="label" htmlFor="input">
-              <span className="label-text text-error">{error && error}</span>
+              <span className="label-text text-error">{error?.message}</span>
             </label>
           </div>
 
-          <button className="btn btn-primary w-full" type="submit">
-            Be an Admin
+          <button
+            disabled={isLoading}
+            className={`btn ${isLoading && "btn-disabled"} btn-primary w-full`}
+            type="submit"
+          >
+            {isLoading ? "Loading..." : "Be an Admin"}
           </button>
         </form>
       </div>

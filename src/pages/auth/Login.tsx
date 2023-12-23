@@ -1,18 +1,27 @@
-import { useForm } from "react-hook-form"; 
-import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../redux/services/apiSlice";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
- 
 
-  const { login, authError } = useAuth();
+  const [login, { data, isLoading, error }] = useLoginMutation();
+  const navigate = useNavigate();
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = (data: { email: string; password: string }) => {
     const { email, password } = data;
-    await login(email, password);
+    login({ email, password });
     reset();
   };
+
+  if (data?.data) {
+    console.log(data);
+    localStorage.setItem("authToken", data?.data?.token);
+    navigate("/dashboard");
+  }
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <main className="min-h-screen flex justify-center items-center ">
@@ -28,7 +37,8 @@ const Login = () => {
               type="email"
               id="email-input"
               placeholder="john@placeholder.com"
-              {...register("email")} required
+              {...register("email")}
+              required
             />
           </div>
           <div className="form-control">
@@ -36,7 +46,9 @@ const Login = () => {
               Enter password
             </label>
             <input
-              className={`input w-full  input-bordered ${authError && "input-error"}`}
+              className={`input w-full  input-bordered ${
+                error?.data?.message && "input-error"
+              }`}
               type="password"
               id="password"
               placeholder="*******"
@@ -45,13 +57,17 @@ const Login = () => {
             />
             <label className="label" htmlFor="input">
               <span className="label-text text-error">
-                 {authError && authError}
+                {error?.data?.message}
               </span>
             </label>
           </div>
 
-          <button className="btn btn-primary w-full" type="submit">
-            Log in
+          <button
+            disabled={isLoading}
+            className={`btn ${isLoading && "btn-disabled"} btn-primary w-full`}
+            type="submit"
+          >
+            {isLoading ? "Loading..." : "Login"}
           </button>
 
           <p>
