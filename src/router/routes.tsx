@@ -6,6 +6,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import BeAnAdmin from "../components/dashboards/BeAnAdmin";
 import StudentAuth1 from "../pages/auth/student/StudentAuth1";
 import StudentAuth2 from "../pages/auth/student/StudentAuth2";
+import AuthProtector from "../pages/auth/AuthProtector";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <AuthProtector>
+        <Dashboard />
+      </AuthProtector>
+    ),
   },
   {
     path: "/be-an-admin",
-    element: <BeAnAdmin />,
+    element: (
+      <AuthProtector role="unassigned">
+        <BeAnAdmin />
+      </AuthProtector>
+    ),
   },
   {
     path: "/student/register",
