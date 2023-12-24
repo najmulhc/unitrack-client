@@ -41,15 +41,15 @@ const ManageUsers = () => {
   }
 
   return (
-    <section className="bg-red-600 w-full z10">
+    <section className=" w-full z-10 p-12">
       <h1 className="text-center font-semibold text-2xl my-4">Manage Users</h1>
       <table className="table table-zebra min-w-[25vw] border border-primary">
         <thead>
           <tr>
             <th>Email Address</th>
-            <th>role</th>
+            <th>Role</th>
             <th>Set Role</th>
-            <th>Action</th>
+            <th>Deletion</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +60,7 @@ const ManageUsers = () => {
                 <td>
                   <AdminUserRole role={user.role} />
                 </td>
-                <td className="">
+                <td className="flex w-full h-full justify-start items-center gap-4">
                   <UpdateUserRole user={user} />
                 </td>
                 <td>
@@ -69,6 +69,7 @@ const ManageUsers = () => {
                       className="btn btn-error btn-disabled"
                       disabled
                       type="button"
+                     title="You can not delete yourself!"
                     >
                       Current user
                     </button>
@@ -80,6 +81,7 @@ const ManageUsers = () => {
                           deletedUserId: user._id,
                         });
                       }}
+                      title={`Delete ${user.email} from the user list.`}
                     >
                       Delete user
                     </button>

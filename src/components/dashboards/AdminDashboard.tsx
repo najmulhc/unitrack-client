@@ -1,15 +1,12 @@
-import DashboardContainer from "../containers/DashboardContainer";
-import ManageUsers from "./admin/ManageUsers";
+import { Outlet } from "react-router";
+import DashboardContainer from "../containers/DashboardContainer"; 
 import DashboardSidebar from "./sidebar/DashboardSidebar";
 
 const AdminDashboard = () => {
   return (
     <DashboardContainer>
       <DashboardSidebar />
-
-      {/* the outlet component will be here, it will render dynamic component based on the route  */}
-
-      <ManageUsers />
+      <Outlet />
     </DashboardContainer>
   );
 };

@@ -26,7 +26,7 @@ const BeAnAdmin = () => {
   return (
     <main className="min-h-screen flex justify-center items-center ">
       <div className="card w-[300px] bg-neutral p-4 gap-4 text-center ">
-        <h2 className="text-2xl">Login</h2>
+        <h2 className="text-2xl">Be an Admin</h2>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
             <label className="label" htmlFor="password">
@@ -43,7 +43,9 @@ const BeAnAdmin = () => {
               required
             />
             <label className="label" htmlFor="input">
-              <span className="label-text text-error">{error?.message}</span>
+              <span className="label-text text-error">
+                {error?.data?.message}
+              </span>
             </label>
           </div>
 

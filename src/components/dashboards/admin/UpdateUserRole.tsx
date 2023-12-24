@@ -23,6 +23,7 @@ const UpdateUserRole = ({ user }: { user: User }) => {
                 userRole: "teacher",
               });
             }}
+            title={`Set role of ${user.email} to teacher.`}
           >
             Set to teacher
           </button>
@@ -34,12 +35,19 @@ const UpdateUserRole = ({ user }: { user: User }) => {
                 userRole: "student",
               });
             }}
+            title={`Set role of ${user.email} to student.`}
           >
             Set to student
           </button>
         </>
       ) : (
-        <span className="badge badge-info"> Already Assigned</span>
+        <span
+          className="badge badge-info"
+          title={`${user.email} is already a ${user.role}.`}
+        >
+          {" "}
+          Already Assigned
+        </span>
       )}
     </>
   );

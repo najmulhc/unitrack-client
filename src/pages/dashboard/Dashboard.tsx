@@ -3,6 +3,7 @@ import StudentDashboard from "../../components/dashboards/StudentDashboard";
 import TeacherDashboard from "../../components/dashboards/TeacherDashboard";
 import UnassignedDashboard from "../../components/dashboards/UnassignedDashboard";
 import { useGetUserQuery } from "../../redux/services/apiSlice";
+import { User } from "../../types";
 
 const Dashboard = () => {
   const { isLoading, data: userData, error } = useGetUserQuery(true);
@@ -25,7 +26,9 @@ const Dashboard = () => {
       </div>
     );
   }
-  const role = userData.data.user.role;
+  const role: User["role"] = userData.data.user.role;
+
+  // using the dashboard based on user type!
   if (role === "admin") {
     return <AdminDashboard />;
   } else if (role === "student") {
