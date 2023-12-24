@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useBeAnAdminMutation } from "../../redux/services/apiSlice";
+import { FetchingError } from "../../types";
 
 const BeAnAdmin = () => {
-  const { register, handleSubmit } = useForm();
-  const [beAnAdmin, { isLoading, error, data }] = useBeAnAdminMutation();
+  const { register, handleSubmit } = useForm<{ key: string }>();
+  const [beAnAdmin, { isLoading, error:adminError, data }] = useBeAnAdminMutation();
   const navigate = useNavigate();
-
+  const error: FetchingError = adminError as FetchingError;
   const onSubmit = async (data: { key: string }) => {
     const { key } = data;
     beAnAdmin({

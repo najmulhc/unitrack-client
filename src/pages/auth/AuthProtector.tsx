@@ -3,40 +3,29 @@ import { useGetUserQuery } from "../../redux/services/apiSlice";
 import { useNavigate } from "react-router";
 import { User } from "../../types";
 
-interface AuthProtectorProps {
-  children:
-    | React.ReactNode
-    | string
-    | number
-    | void
-    | Iterable<React.ReactNode>
-    | null
-    | Element
-    | boolean
-    | JSX.Element
-    | undefined
-    | any;
+const AuthProtector = ({
+  children,
+  role,
+}: {
+  children: React.ReactNode;
   role: "admin" | "student" | "teacher" | "unassigned" | undefined;
-}
-
-const AuthProtector: React.FC<AuthProtectorProps> = ({ children, role }) => {
+}) => {
   const { data, error, isLoading } = useGetUserQuery({});
   const navigate = useNavigate();
 
   if (data) {
     const user: User = data?.data?.user;
-    console.log(role)
+    console.log(role);
     if (role && role === user.role) {
-       
       return children;
     } else if (role && role !== user.role) {
-      console.log("it is right")
+      console.log("it is right");
       navigate("/login");
     } else if (user.role && role === undefined) {
       console.log("bottom");
-      return children;
+      return <>{children}</>;
     } else {
-      return navigate("/login");
+      navigate("/login");
     }
   }
   if (error) {
@@ -55,6 +44,7 @@ const AuthProtector: React.FC<AuthProtectorProps> = ({ children, role }) => {
       </div>
     );
   }
+  return <div>{children}</div>;
 };
 
 export default AuthProtector;

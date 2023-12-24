@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/services/apiSlice";
+import { FetchingError } from "../../types";
 
 const Login = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm<{
+    email: string;
+    password: string;
+  }>();
 
   const [login, { data, isLoading, error }] = useLoginMutation();
   const navigate = useNavigate();
-
+  const loginError: FetchingError = error as FetchingError;
   const onSubmit = (data: { email: string; password: string }) => {
     const { email, password } = data;
     login({ email, password });
@@ -47,7 +51,7 @@ const Login = () => {
             </label>
             <input
               className={`input w-full  input-bordered ${
-                error?.data?.message && "input-error"
+                loginError.data.message && "input-error"
               }`}
               type="password"
               id="password"
@@ -57,14 +61,14 @@ const Login = () => {
             />
             <label className="label" htmlFor="input">
               <span className="label-text text-error">
-                {error?.data?.message}
+                {loginError?.data?.message}
               </span>
             </label>
           </div>
 
           <button
             disabled={isLoading}
-            className={`btn ${isLoading && "btn-disabled"} btn-primary w-full`}
+            className={`btn ${isLoading && "skeleton"} btn-primary w-full`}
             type="submit"
           >
             {isLoading ? "Loading..." : "Login"}

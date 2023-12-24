@@ -4,7 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/services/apiSlice";
 
 const Register = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<{
+    password: string;
+    confirmPassword: string;
+    email: string;
+  }>();
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
   const [registerNewUser, { isLoading, error: regError, data: registerData }] =
@@ -66,7 +70,7 @@ const Register = () => {
           </div>
           <div className="form-control">
             <label className="label" htmlFor="confirm-password">
-              Enter email address
+              Confirm Password
             </label>
             <input
               className="input w-full "

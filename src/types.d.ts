@@ -12,3 +12,9 @@ export type User = {
   role: "unassigned" | "admin" | "teacher" | "student";
   _id: string;
 };
+
+export interface FetchingError extends FetchBaseQueryError {
+  data: {
+    message: string;
+  };
+}

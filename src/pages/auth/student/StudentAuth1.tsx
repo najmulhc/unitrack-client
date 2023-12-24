@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 
 interface FormData {
   firstName: string;
+  lastName: string;
+  dateOfBirth: Date;
+  bloodGroup: string;
 }
 
 const StudentAuth1 = () => {
@@ -10,7 +13,7 @@ const StudentAuth1 = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormData>();
   const onSubmit = (data: FormData) => {
     console.log(data);
     reset();
@@ -25,7 +28,6 @@ const StudentAuth1 = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="card w-[80%] bg-base card-bordered p-6 "
       >
-       
         <div className="w-full justify-between flex gap-4 mb-4">
           <div className="w-full">
             <label htmlFor="firstName" className="label">
@@ -59,7 +61,7 @@ const StudentAuth1 = () => {
               } w-full`}
               id="lastName"
               {...register("lastName", {
-                required: "We need your last name."
+                required: "We need your last name.",
               })}
               placeholder="Doe"
             />
@@ -84,14 +86,14 @@ const StudentAuth1 = () => {
               } w-full`}
               id="dateOfBirth"
               {...register("dateOfBirth", {
-                required:"Please write your date of birth."
+                required: "Please write your date of birth.",
               })}
               placeholder="Doe"
             />
             {errors.dateOfBirth && (
               <label className="label">
                 <span className="label-text-alt text-error">
-                  {errors?.dateOfBirth?.message as string || ""}
+                  {(errors?.dateOfBirth?.message as string) || ""}
                 </span>{" "}
               </label>
             )}
@@ -117,7 +119,7 @@ const StudentAuth1 = () => {
             {errors.bloodGroup && (
               <label className="label">
                 <span className="label-text-alt text-error">
-                  {errors?.bloodGroup?.message as string || ""}
+                  {(errors?.bloodGroup?.message as string) || ""}
                 </span>{" "}
               </label>
             )}
