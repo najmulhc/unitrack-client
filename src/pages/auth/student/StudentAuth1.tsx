@@ -66,7 +66,7 @@ const StudentAuth1 = () => {
             {errors.lastName && (
               <label className="label">
                 <span className="label-text-alt text-error">
-                  {errors?.lastName?.message}
+                  {errors?.lastName?.message as string}
                 </span>{" "}
               </label>
             )}
@@ -91,7 +91,7 @@ const StudentAuth1 = () => {
             {errors.dateOfBirth && (
               <label className="label">
                 <span className="label-text-alt text-error">
-                  {errors?.dateOfBirth?.message}
+                  {errors?.dateOfBirth?.message as string || ""}
                 </span>{" "}
               </label>
             )}
@@ -117,7 +117,7 @@ const StudentAuth1 = () => {
             {errors.bloodGroup && (
               <label className="label">
                 <span className="label-text-alt text-error">
-                  {errors?.bloodGroup?.message}
+                  {errors?.bloodGroup?.message as string || ""}
                 </span>{" "}
               </label>
             )}
