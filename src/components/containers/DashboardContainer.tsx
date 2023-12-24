@@ -5,7 +5,7 @@ const DashboardContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <DashboardNavbar />
-      <main className="flex flex-wrap min-h-screen">{children}</main>
+      <main className="flex justify-between">{children}</main>
       <DashboardFooter />
     </>
   );

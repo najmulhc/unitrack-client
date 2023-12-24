@@ -8,5 +8,7 @@ export type IconProps = {
 };
 
 export type User = {
-  email: string
-}
+  email: string;
+  role: "unassigned" | "admin" | "teacher" | "student";
+  _id: string;
+};

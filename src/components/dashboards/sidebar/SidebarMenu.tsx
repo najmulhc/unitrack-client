@@ -11,7 +11,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ text, Icon, link }) => {
   const navigate = useNavigate();
   return (
     <button
-      className="btn btn-primary bg-opacity-20  stroke-primary hover:text-secondary hover:bg-secondary  hover:border-secondary hover:stroke-secondary  hover:bg-opacity-20 capitalize w-full text-md gap-2 flex justify-start text-primary "
+      className="btn btn-primary bg-opacity-20  stroke-primary hover:text-secondary hover:bg-secondary  hover:border-secondary hover:stroke-secondary  hover:bg-opacity-20 capitalize w-full text-md gap-2 text-primary flex justify-start items-center "
       onClick={() => {
         navigate(link);
       }}
