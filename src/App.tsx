@@ -5,9 +5,11 @@ import store from "./redux/store";
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <div>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </div>
   );
 };
 
