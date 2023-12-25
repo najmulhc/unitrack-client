@@ -75,7 +75,7 @@ export const appApi = createApi({
     postStudentPhaseOne: builder.mutation({
       query: (data: {
         firstName: string;
-        lastname: string;
+        lastName: string;
         dateOfBirth: number;
         bloodGroup: "A+" | "A-" | "B+" | "B-" | "O+" | "O-" | "AB+" | "AB-";
       }) => ({

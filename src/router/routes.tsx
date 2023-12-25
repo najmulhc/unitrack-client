@@ -63,11 +63,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/student/register/one",
-        element: <StudentAuth1 />,
+        element: (
+          <AuthProtector role="student">
+            <StudentAuth1 />
+          </AuthProtector>
+        ),
       },
       {
         path: "/student/register/two",
-        element: <StudentAuth2 />,
+        element: (
+          <AuthProtector role="student">
+            <StudentAuth2 />
+          </AuthProtector>
+        ),
       },
     ],
   },

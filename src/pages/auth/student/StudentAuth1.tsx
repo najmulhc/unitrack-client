@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
+import { useGetStudentQuery, usePostStudentPhaseOneMutation } from "../../../redux/services/apiSlice";
+import { useNavigate } from "react-router";
 
 interface FormData {
   firstName: string;
   lastName: string;
   dateOfBirth: Date;
-  bloodGroup: string;
+  bloodGroup: "A+" | "A-" | "B+" | "B-" | "O+" | "O-" | "AB+" | "AB-";
 }
 
 const StudentAuth1 = () => {
@@ -14,10 +16,34 @@ const StudentAuth1 = () => {
     reset,
     formState: { errors },
   } = useForm<FormData>();
+  const [updateUser, { error: studentUpdateError, isLoading, data }] =
+    usePostStudentPhaseOneMutation();
+  const navigate = useNavigate();
+
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    const { firstName, lastName, dateOfBirth, bloodGroup } = data;
+    const realDateOfBirth = new Date(dateOfBirth).getTime();
+    updateUser({
+      firstName,
+      lastName,
+      dateOfBirth: realDateOfBirth,
+      bloodGroup,
+    });
     reset();
   };
+  const { data: studentData } = useGetStudentQuery({});
+
+  if (data || studentData?.data?.student.authStage !== "one") {
+    console.log(data?.data);
+    navigate("/dashboard");
+  }
+  if (isLoading) {
+    console.log("loading");
+  }
+  if (studentUpdateError) {
+    console.log(studentUpdateError);
+  }
+
   return (
     <main className="flex justify-center items-center flex-col  ">
       <div className="prose">

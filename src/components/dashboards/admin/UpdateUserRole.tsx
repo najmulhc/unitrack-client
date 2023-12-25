@@ -2,7 +2,8 @@ import { useUpdateUserRoleMutation } from "../../../redux/services/apiSlice";
 import { User } from "../../../types";
 
 const UpdateUserRole = ({ user }: { user: User }) => {
-  const [setRole, { isLoading: roleLoading }] = useUpdateUserRoleMutation();
+  const [setRole, { isLoading: roleLoading}] =
+    useUpdateUserRoleMutation();
 
   if (roleLoading) {
     return (
@@ -11,6 +12,7 @@ const UpdateUserRole = ({ user }: { user: User }) => {
       </div>
     );
   }
+ 
   return (
     <>
       {user.role === "unassigned" ? (

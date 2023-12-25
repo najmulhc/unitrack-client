@@ -37,7 +37,9 @@ const Login = () => {
               Enter email address
             </label>
             <input
-              className="input bg-base w-full "
+              className={`input w-full  input-bordered ${
+                loginError?.data?.message && "input-error"
+              }`}
               type="email"
               id="email-input"
               placeholder="john@placeholder.com"
@@ -51,7 +53,7 @@ const Login = () => {
             </label>
             <input
               className={`input w-full  input-bordered ${
-                loginError.data.message && "input-error"
+                loginError?.data?.message && "input-error"
               }`}
               type="password"
               id="password"
