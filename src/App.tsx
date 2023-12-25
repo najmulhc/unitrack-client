@@ -3,7 +3,7 @@ import router from "./router/routes";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
-const App = () => {
+const App: React.FunctionComponent = () => {
   return (
     <>
       <Provider store={store}>
