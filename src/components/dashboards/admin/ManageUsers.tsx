@@ -41,7 +41,7 @@ const ManageUsers = () => {
   }
 
   return (
-    <section className=" w-full z-10 p-12">
+    <>
       <h1 className="text-center font-semibold text-2xl my-4">Manage Users</h1>
       <table className="table table-zebra min-w-[25vw] border border-primary">
         <thead>
@@ -91,7 +91,7 @@ const ManageUsers = () => {
             ))}
         </tbody>
       </table>
-    </section>
+    </>
   );
 };
 

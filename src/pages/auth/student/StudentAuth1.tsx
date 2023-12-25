@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useGetStudentQuery, usePostStudentPhaseOneMutation } from "../../../redux/services/apiSlice";
+import {
+  useGetStudentQuery,
+  usePostStudentPhaseOneMutation,
+} from "../../../redux/services/apiSlice";
 import { useNavigate } from "react-router";
 
 interface FormData {
@@ -32,6 +35,16 @@ const StudentAuth1 = () => {
     reset();
   };
   const { data: studentData } = useGetStudentQuery({});
+  const bloodGroups: FormData["bloodGroup"][] = [
+    "A+",
+    "A-",
+    "AB+",
+    "AB-",
+    "B+",
+    "B-",
+    "O+",
+    "O-",
+  ];
 
   if (data || studentData?.data?.student.authStage !== "one") {
     console.log(data?.data);
@@ -128,20 +141,20 @@ const StudentAuth1 = () => {
             <label htmlFor="bloodGroup" className="label">
               <span className="label-text">Blood Group</span>
             </label>
-            <input
-              className={`input input-bordered ${
+            <select className={`input input-bordered ${
                 errors.bloodGroup && "border-error"
               } w-full`}
-              id="bloodGroup"
               {...register("bloodGroup", {
-                pattern: {
-                  value: /^(A|B|AB|O)(\+|-)$/,
-                  message: "It is not a valid blood group.",
-                },
-                required: "We need your blood group info.",
+                required: "Please add your blood group.",
               })}
-              placeholder="Doe"
-            />
+            >
+              <option value="">Select your blood group</option>
+              {bloodGroups.map((bloodGroup) => (
+                <option value={bloodGroup} key={bloodGroup}>
+                  {bloodGroup}
+                </option>
+              ))}
+            </select>
             {errors.bloodGroup && (
               <label className="label">
                 <span className="label-text-alt text-error">

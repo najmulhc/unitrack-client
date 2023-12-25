@@ -3,7 +3,7 @@ import { useGetUserQuery, useLoginMutation } from "../redux/services/apiSlice";
 
 const Home = () => {
   const [login, { data: loginData, error: loginError }] = useLoginMutation();
-  const { data: userData, error: userError } = useGetUserQuery();
+  const { data: userData, error: userError } = useGetUserQuery({});
 
   if (loginData) {
     console.log(loginData);

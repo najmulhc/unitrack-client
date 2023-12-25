@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
-import { useGetStudentQuery } from "../../redux/services/apiSlice";
-import { FetchingError } from "../../types";
-import DashboardContainer from "../containers/DashboardContainer";
+import { useGetStudentQuery } from "../../../redux/services/apiSlice";
+import { FetchingError } from "../../../types";
+import DashboardContainer from "../../containers/DashboardContainer";
 import { useEffect } from "react";
-import DashboardSidebar from "./sidebar/DashboardSidebar";
+import DashboardSidebar from "../sidebar/DashboardSidebar";
 const StudentDashboard = () => {
   const { data: studentData, error } = useGetStudentQuery({});
   const student = studentData?.data?.student;
@@ -26,10 +26,12 @@ const StudentDashboard = () => {
   }, [student, navigate]);
   return (
     <DashboardContainer>
-       <DashboardSidebar/>
-       <div className="prose" >
-        <h2>Hi, {student?.firstName} {student?.lastName}!</h2>
-       </div>
+      <DashboardSidebar />
+      <div className="prose">
+        <h2>
+          Hi, {student?.firstName} {student?.lastName}!
+        </h2>
+      </div>
     </DashboardContainer>
   );
 };

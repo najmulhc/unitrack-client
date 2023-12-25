@@ -1,7 +1,7 @@
-import AdminDashboard from "../../components/dashboards/AdminDashboard";
-import StudentDashboard from "../../components/dashboards/StudentDashboard";
-import TeacherDashboard from "../../components/dashboards/TeacherDashboard";
-import UnassignedDashboard from "../../components/dashboards/UnassignedDashboard";
+import AdminDashboard from "../../components/dashboards/admin/AdminDashboard";
+import StudentDashboard from "../../components/dashboards/student/StudentDashboard";
+import TeacherDashboard from "../../components/dashboards/teacher/TeacherDashboard";
+import UnassignedDashboard from "../../components/dashboards/unassigned/UnassignedDashboard";
 import { useGetUserQuery } from "../../redux/services/apiSlice";
 import { User } from "../../types";
 

@@ -3,6 +3,7 @@ import { User } from "../../types";
 
 const initialState: User = {
   email: "",
+  role: "unassigned", _id: ""
 };
 
 const userSlice = createSlice({

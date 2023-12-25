@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { Store } from "../../redux/store";
-import DashboardContainer from "../containers/DashboardContainer";
+import { Store } from "../../../redux/store";
+import DashboardContainer from "../../containers/DashboardContainer";
 import { useNavigate } from "react-router";
 
 const UnassignedDashboard = () => {

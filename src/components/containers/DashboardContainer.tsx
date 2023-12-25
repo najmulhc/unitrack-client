@@ -5,7 +5,7 @@ const DashboardContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <DashboardNavbar />
-      <main className="flex justify-between">{children}</main>
+      <main className="flex justify-start">{children}</main>
       <DashboardFooter />
     </>
   );
