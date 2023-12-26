@@ -2,6 +2,7 @@ import AdminDashboard from "../../components/dashboards/admin/AdminDashboard";
 import StudentDashboard from "../../components/dashboards/student/StudentDashboard";
 import TeacherDashboard from "../../components/dashboards/teacher/TeacherDashboard";
 import UnassignedDashboard from "../../components/dashboards/unassigned/UnassignedDashboard";
+import Loading from "../../components/loading/Loading";
 import { useGetUserQuery } from "../../redux/services/apiSlice";
 import { User } from "../../types";
 
@@ -10,9 +11,9 @@ const Dashboard = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <h1>Loading</h1>
-      </div>
+      <main className="w-screen h-screen flex  justify-center items-center">
+        <Loading />
+      </main>
     );
   }
 
@@ -26,7 +27,7 @@ const Dashboard = () => {
       </div>
     );
   }
-  const role: User["role"] = userData.data.user.role;
+  const role: User["role"] = userData?.data?.user?.role;
 
   // using the dashboard based on user type!
   if (role === "admin") {

@@ -4,8 +4,9 @@ import { FetchingError } from "../../../types";
 import DashboardContainer from "../../containers/DashboardContainer";
 import { useEffect } from "react";
 import DashboardSidebar from "../sidebar/DashboardSidebar";
+import Loading from "../../loading/Loading";
 const StudentDashboard = () => {
-  const { data: studentData, error } = useGetStudentQuery({});
+  const { data: studentData, error, isLoading } = useGetStudentQuery({});
   const student = studentData?.data?.student;
   const navigate = useNavigate();
 
@@ -24,6 +25,10 @@ const StudentDashboard = () => {
       navigate("/student/register/two");
     }
   }, [student, navigate]);
+
+   if (isLoading) {
+     return <Loading />;
+   }
   return (
     <DashboardContainer>
       <DashboardSidebar />

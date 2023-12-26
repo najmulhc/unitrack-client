@@ -12,6 +12,7 @@ import ManageUsers from "../components/dashboards/admin/ManageUsers";
 import NotFound from "../pages/NotFound";
 import DashboardPageContainer from "../components/containers/DashboardPageContainer";
 import TeacherAuth from "../pages/auth/teacher/TeacherAuth";
+import Loading from "../components/loading/Loading";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,12 @@ const router = createBrowserRouter([
         <TeacherAuth />
       </AuthProtector>
     ),
+  },
+  {
+    path: "/loading", 
+    element: (
+      <Loading/>
+    )
   },
   {
     path: "*",

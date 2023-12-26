@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useBeAnAdminMutation } from "../redux/services/apiSlice";
 import { FetchingError } from "../types";
+import Loading from "../components/loading/Loading";
 
 const BeAnAdmin = () => {
   const { register, handleSubmit } = useForm<{ key: string }>();
@@ -23,6 +24,10 @@ const BeAnAdmin = () => {
   }
   if (error) {
     console.log(error);
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (

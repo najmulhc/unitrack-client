@@ -4,6 +4,7 @@ import {
   usePostStudentPhaseOneMutation,
 } from "../../../redux/services/apiSlice";
 import { useNavigate } from "react-router";
+import Loading from "../../../components/loading/Loading";
 
 interface FormData {
   firstName: string;
@@ -51,7 +52,11 @@ const StudentAuth1 = () => {
     navigate("/dashboard");
   }
   if (isLoading) {
-    console.log("loading");
+     return (
+       <main className="w-screen h-screen flex  justify-center items-center">
+         <Loading />
+       </main>
+     );
   }
   if (studentUpdateError) {
     console.log(studentUpdateError);

@@ -4,6 +4,7 @@ import {
   useGetUserQuery,
 } from "../../../redux/services/apiSlice";
 import { User } from "../../../types";
+import Loading from "../../loading/Loading";
 import AdminUserRole from "./AdminUserRole";
 import UpdateUserRole from "./UpdateUserRole";
 
@@ -17,11 +18,7 @@ const ManageUsers = () => {
   const users: User[] = data?.data?.users;
 
   if (isLoading || deleteLoading) {
-    return (
-      <div>
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loading />;
   }
   if (error) {
     return (
@@ -69,7 +66,7 @@ const ManageUsers = () => {
                       className="btn btn-error btn-disabled"
                       disabled
                       type="button"
-                     title="You can not delete yourself!"
+                      title="You can not delete yourself!"
                     >
                       Current user
                     </button>

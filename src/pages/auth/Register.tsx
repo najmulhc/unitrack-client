@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/services/apiSlice";
+import Loading from "../../components/loading/Loading";
 
 const Register = () => {
   const { register, handleSubmit } = useForm<{
@@ -38,7 +39,13 @@ const Register = () => {
   if (regError) {
     console.log(regError);
   }
-
+  if (isLoading) {
+    return (
+      <main className="w-screen h-screen flex  justify-center items-center">
+        <Loading />
+      </main>
+    );
+  }
   return (
     <main className="min-h-screen flex justify-center items-center ">
       <div className="card w-[300px] bg-neutral p-4 gap-4 text-center ">

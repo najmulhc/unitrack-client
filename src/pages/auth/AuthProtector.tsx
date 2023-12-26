@@ -2,6 +2,7 @@ import React from "react";
 import { useGetUserQuery } from "../../redux/services/apiSlice";
 import { useNavigate } from "react-router";
 import { User } from "../../types";
+import Loading from "../../components/loading/Loading";
 
 const AuthProtector = ({
   children,
@@ -15,13 +16,13 @@ const AuthProtector = ({
 
   if (data) {
     const user: User = data?.data?.user;
-    console.log(role);
-    if (role && role === user.role) {
+
+    if (role && role === user?.role) {
       return children;
-    } else if (role && role !== user.role) {
+    } else if (role && role !== user?.role) {
       console.log("it is right");
       navigate("/login");
-    } else if (user.role && role === undefined) {
+    } else if (user?.role && role === undefined) {
       console.log("bottom");
       return <>{children}</>;
     } else {
@@ -29,6 +30,7 @@ const AuthProtector = ({
     }
   }
   if (error) {
+    console.log(error);
     navigate("/login");
     return (
       <div>
@@ -39,9 +41,9 @@ const AuthProtector = ({
 
   if (isLoading) {
     return (
-      <div>
-        <h1>The data is being load by papa </h1>
-      </div>
+      <main className="w-screen h-screen flex  justify-center items-center">
+        <Loading />
+      </main>
     );
   }
   return <div>{children}</div>;

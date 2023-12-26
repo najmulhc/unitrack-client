@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/services/apiSlice";
 import { FetchingError } from "../../types";
+import Loading from "../../components/loading/Loading";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm<{
@@ -27,6 +28,13 @@ const Login = () => {
     console.log(error);
   }
 
+   if (isLoading) {
+     return (
+       <main className="w-screen h-screen flex  justify-center items-center">
+         <Loading />
+       </main>
+     );
+   }
   return (
     <main className="min-h-screen flex justify-center items-center ">
       <div className="card w-[300px] bg-neutral p-4 gap-4 text-center ">
