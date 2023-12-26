@@ -19,7 +19,7 @@ export const appApi = createApi({
       providesTags: ["user"],
     }),
     login: builder.mutation({
-      query: (data: { email: string, password: string }) => ({
+      query: (data: { email: string; password: string }) => ({
         url: "/users/login",
         method: "POST",
         body: data,
@@ -98,7 +98,12 @@ export const appApi = createApi({
       providesTags: ["teachers"],
     }),
     updateTeacher: builder.mutation({
-      query: (data) => ({
+      query: (data: {
+        firstName: string;
+        lastName: string;
+        bloodGroup: "A+" | "A-" | "B+" | "B-" | "O+" | "O-" | "AB+" | "AB-";
+        title: "Professor" | "Assistant Professor" | "Lecturer";
+      }) => ({
         url: "/teachers",
         method: "PATCH",
         body: data,
@@ -129,5 +134,5 @@ export const {
   usePostStudentPhaseTwoMutation,
   useGetTeacherQuery,
   useUpdateTeacherMutation,
-  usePostCourseMutation
+  usePostCourseMutation,
 } = appApi;
