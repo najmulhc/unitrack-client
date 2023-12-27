@@ -2,6 +2,8 @@
 
 import { useForm } from "react-hook-form";
 import { useUpdateTeacherMutation } from "../../../redux/services/apiSlice";
+import Loading from "../../../components/loading/Loading";
+import { useNavigate } from "react-router";
 
 interface FormData {
   firstName: string;
@@ -17,7 +19,9 @@ const TeacherAuth = () => {
     reset,
     formState: { errors },
   } = useForm<FormData>();
-  const [updateTeacher] = useUpdateTeacherMutation();
+  const [updateTeacher, { isLoading, data }] = useUpdateTeacherMutation();
+
+  const navigate = useNavigate();
 
   const bloodGroups: FormData["bloodGroup"][] = [
     "A+",
@@ -43,6 +47,18 @@ const TeacherAuth = () => {
 
   if (errors) {
     console.log(errors);
+  }
+
+  if (isLoading) {
+    return (
+      <main className="w-screen h-screen flex justify-center items-center">
+        <Loading />
+      </main>
+    );
+  }
+
+  if (data) {
+    navigate("/dashboard");
   }
 
   return (
