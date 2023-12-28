@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { useGetStudentQuery } from "../../../redux/services/apiSlice";
 import { FetchingError } from "../../../types";
 import DashboardContainer from "../../containers/DashboardContainer";
@@ -26,17 +26,13 @@ const StudentDashboard = () => {
     }
   }, [student, navigate]);
 
-   if (isLoading) {
-     return <Loading />;
-   }
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <DashboardContainer>
       <DashboardSidebar role="student" />
-      <div className="prose">
-        <h2>
-          Hi, {student?.firstName} {student?.lastName}!
-        </h2>
-      </div>
+      <Outlet />
     </DashboardContainer>
   );
 };

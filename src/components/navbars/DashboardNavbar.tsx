@@ -8,7 +8,7 @@ const DashboardNavbar = () => {
   return (
     <div className="navbar bg-secondary">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="btn btn-ghost normal-case text-xl">Unitracks</a>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">

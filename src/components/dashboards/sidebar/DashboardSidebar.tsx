@@ -1,4 +1,5 @@
 import CalendarIcon from "../../icons/Calendar.icon";
+import CourseIcon from "../../icons/Course.icon";
 import SidebarMenu from "./SidebarMenu";
 
 interface SidebarProps {
@@ -12,14 +13,21 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
         <SidebarMenu
           Icon={CalendarIcon}
           text="Manage Users"
-          link="/dashboard"
+          link="/dashboard/manage-users"
         />
       )}
       {role === "admin" && (
         <SidebarMenu
           Icon={CalendarIcon}
           text="Manage Users"
-          link="/dashboard"
+          link="/dashboard/manage-users"
+        />
+      )}
+      {(role === "teacher" || role === "student") && (
+        <SidebarMenu
+          Icon={CourseIcon}
+          text="My Courses"
+          link="/dashboard/my-courses"
         />
       )}
     </aside>

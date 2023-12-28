@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import { useGetTeacherQuery } from "../../../redux/services/apiSlice";
 import DashboardContainer from "../../containers/DashboardContainer";
 import Loading from "../../loading/Loading";
@@ -22,9 +22,7 @@ const TeacherDashboard = () => {
   return (
     <DashboardContainer>
       <DashboardSidebar role="teacher" />
-      <div className="prose">
-        <h1>Teacher Dashboard!</h1>
-      </div>
+      <Outlet />
     </DashboardContainer>
   );
 };

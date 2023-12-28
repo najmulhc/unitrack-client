@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/services/apiSlice";
 import { FetchingError } from "../../types";
 import Loading from "../../components/loading/Loading";
@@ -9,10 +9,12 @@ const Login = () => {
     email: string;
     password: string;
   }>();
-
   const [login, { data, isLoading, error }] = useLoginMutation();
   const navigate = useNavigate();
   const loginError: FetchingError = error as FetchingError;
+  const location = useLocation();
+  const lastVisitedPath = location.pathname;
+
   const onSubmit = (data: { email: string; password: string }) => {
     const { email, password } = data;
     login({ email, password });
@@ -26,6 +28,11 @@ const Login = () => {
   }
   if (error) {
     console.log(error);
+  }
+
+
+  if(lastVisitedPath) {
+    console.log(lastVisitedPath);
   }
 
    if (isLoading) {
