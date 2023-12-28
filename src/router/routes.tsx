@@ -6,14 +6,14 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import BeAnAdmin from "../pages/BeAnAdmin";
 import StudentAuth1 from "../pages/auth/student/StudentAuth1";
 import StudentAuth2 from "../pages/auth/student/StudentAuth2";
-import AuthProtector from "../pages/auth/AuthProtector";
-import AdminCourses from "../components/dashboards/admin/AdminCourses";
+import AuthProtector from "../pages/auth/AuthProtector"; 
 import ManageUsers from "../components/dashboards/admin/ManageUsers";
 import NotFound from "../pages/NotFound";
 import DashboardPageContainer from "../components/containers/DashboardPageContainer";
 import TeacherAuth from "../pages/auth/teacher/TeacherAuth";
 import Loading from "../components/loading/Loading";
 import MyCourses from "../pages/dashboard/MyCourses";
+import ManageCourses from "../components/dashboards/admin/ManageCourses";
 
 const router = createBrowserRouter([
   {
@@ -35,13 +35,14 @@ const router = createBrowserRouter([
         <Dashboard />
       </AuthProtector>
     ),
-    children: [
+    children: [ 
+ 
       {
-        path: "/dashboard/courses",
+        path: "/dashboard/manage-courses",
         element: (
           <AuthProtector role="admin">
             <DashboardPageContainer>
-              <AdminCourses />
+              <ManageCourses />
             </DashboardPageContainer>
           </AuthProtector>
         ),

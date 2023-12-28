@@ -1,5 +1,5 @@
-import CalendarIcon from "../../icons/Calendar.icon";
 import CourseIcon from "../../icons/Course.icon";
+import UserIcon from "../../icons/User.icon";
 import SidebarMenu from "./SidebarMenu";
 
 interface SidebarProps {
@@ -11,16 +11,16 @@ const DashboardSidebar = ({ role }: SidebarProps) => {
     <aside className="min-w-[200px] p-4 bg-base-200  border-r border-r-secondary z-10 flex flex-col gap-2">
       {role === "admin" && (
         <SidebarMenu
-          Icon={CalendarIcon}
-          text="Manage Users"
+          Icon={UserIcon}
+          text="Users"
           link="/dashboard/manage-users"
         />
       )}
       {role === "admin" && (
         <SidebarMenu
-          Icon={CalendarIcon}
-          text="Manage Users"
-          link="/dashboard/manage-users"
+          Icon={CourseIcon}
+          text="Courses"
+          link="/dashboard/manage-courses"
         />
       )}
       {(role === "teacher" || role === "student") && (
