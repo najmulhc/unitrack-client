@@ -1,34 +1,25 @@
+import { useRef, useState } from "react";
 import {
-  useDeleteUserMutation,
   useGetAllUsersQuery,
   useGetUserQuery,
 } from "../../../redux/services/apiSlice";
-import { User } from "../../../types";
+import { DeleteUserProps, User } from "../../../types";
+import DeleteUserModal from "../../modals/DeleteUserModal";
 import AdminUserRole from "./AdminUserRole";
 import UpdateUserRole from "./UpdateUserRole";
 
 const ManageUsers = () => {
   const { isLoading, error, data } = useGetAllUsersQuery({});
-  const [deleteUser, { isLoading: deleteLoading, error: deleteError }] =
-    useDeleteUserMutation();
 
   const { data: currentuser } = useGetUserQuery({});
-
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const [deletedUser, setDeletedUser] = useState<DeleteUserProps>();
   const users: User[] = data?.data?.users;
 
   if (error) {
     return (
       <div>
         <h2>Error!</h2>
-      </div>
-    );
-  }
-
-  if (deleteError) {
-    console.log(deleteError);
-    return (
-      <div>
-        <h1>There was an error while deleting the user</h1>
       </div>
     );
   }
@@ -69,11 +60,13 @@ const ManageUsers = () => {
                   ) : (
                     <button
                       className="btn btn-error"
-                      disabled={isLoading || deleteLoading}
+                      disabled={isLoading}
                       onClick={() => {
-                        deleteUser({
-                          deletedUserId: user._id,
+                        setDeletedUser({
+                          email: user.email,
+                          _id: user._id,
                         });
+                        modalRef.current?.showModal();
                       }}
                       title={`Delete ${user.email} from the user list.`}
                     >
@@ -85,6 +78,7 @@ const ManageUsers = () => {
             ))}
         </tbody>
       </table>
+      <DeleteUserModal modalRef={modalRef} deletedUser={deletedUser} />
     </>
   );
 };

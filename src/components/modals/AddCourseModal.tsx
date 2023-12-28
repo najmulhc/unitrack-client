@@ -1,25 +1,16 @@
-import { RefObject } from "react";
+import { ModalProps } from "../../types";
 
-const AddCourseModal = ({
-  modalRef,
-}: {
-  modalRef: RefObject<HTMLDialogElement>;
-}) => {
+const AddCourseModal: React.FC<ModalProps> = ({ modalRef , data}) => {
   return (
-    <dialog
-      id="add-course-modal"
-      className="modal modal-bottom sm:modal-middle"
-      ref={modalRef}
-    >
-      <div className="modal-box">
-        <h3 className="font-bold text-lg">Hello!</h3>
-        <p className="py-4">Press ESC key or click the button below to close</p>
-        <div className="modal-action">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
-          </form>
-        </div>
+    <dialog className="modal modal-top sm:modal-middle" ref={modalRef}>
+      <div className="modal-box prose">
+        <h1>Test!!!</h1>
+        <button
+          className="btn btn-error"
+          onClick={() => modalRef.current.close()}
+        >
+        {data}
+        </button>
       </div>
     </dialog>
   );

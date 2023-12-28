@@ -18,3 +18,13 @@ export interface FetchingError extends FetchBaseQueryError {
     message: string;
   };
 }
+
+export interface DeleteUserProps {
+  email: string;
+  _id: string;
+}
+export interface ModalProps {
+  modalRef: RefObject<HTMLDialogElement>;
+  data?: string;
+  deletedUser?: DeleteUserProps;
+}
