@@ -1,11 +1,27 @@
 import CalendarIcon from "../../icons/Calendar.icon";
 import SidebarMenu from "./SidebarMenu";
 
-const DashboardSidebar = () => {
+interface SidebarProps {
+  role: "admin" | "student" | "teacher" | "unassigned";
+}
+
+const DashboardSidebar = ({ role }: SidebarProps) => {
   return (
     <aside className="min-w-[200px] p-4 bg-base-200  border-r border-r-secondary z-10 flex flex-col gap-2">
-      <SidebarMenu Icon={CalendarIcon} text="Manage Users" link="/dashboard" />
-      <SidebarMenu Icon={CalendarIcon} text="Courses" link="/dashboard/courses" />
+      {role === "admin" && (
+        <SidebarMenu
+          Icon={CalendarIcon}
+          text="Manage Users"
+          link="/dashboard"
+        />
+      )}
+      {role === "admin" && (
+        <SidebarMenu
+          Icon={CalendarIcon}
+          text="Manage Users"
+          link="/dashboard"
+        />
+      )}
     </aside>
   );
 };

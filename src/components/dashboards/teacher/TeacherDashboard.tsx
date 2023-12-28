@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { useGetTeacherQuery } from "../../../redux/services/apiSlice";
 import DashboardContainer from "../../containers/DashboardContainer";
 import Loading from "../../loading/Loading";
+import DashboardSidebar from "../sidebar/DashboardSidebar";
 
 const TeacherDashboard = () => {
   const { isLoading, error, data } = useGetTeacherQuery({});
@@ -20,9 +21,10 @@ const TeacherDashboard = () => {
 
   return (
     <DashboardContainer>
-      <main>
-        <p>Teacher dashboard</p>
-      </main>
+      <DashboardSidebar role="teacher" />
+      <div className="prose">
+        <h1>Teacher Dashboard!</h1>
+      </div>
     </DashboardContainer>
   );
 };

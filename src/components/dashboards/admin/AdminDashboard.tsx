@@ -5,7 +5,7 @@ import DashboardSidebar from "../sidebar/DashboardSidebar";
 const AdminDashboard = () => {
   return (
     <DashboardContainer>
-      <DashboardSidebar />
+      <DashboardSidebar role="admin" />
       <Outlet />
     </DashboardContainer>
   );

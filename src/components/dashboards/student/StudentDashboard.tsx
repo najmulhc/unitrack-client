@@ -31,7 +31,7 @@ const StudentDashboard = () => {
    }
   return (
     <DashboardContainer>
-      <DashboardSidebar />
+      <DashboardSidebar role="student" />
       <div className="prose">
         <h2>
           Hi, {student?.firstName} {student?.lastName}!
