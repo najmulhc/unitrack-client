@@ -6,7 +6,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import BeAnAdmin from "../pages/BeAnAdmin";
 import StudentAuth1 from "../pages/auth/student/StudentAuth1";
 import StudentAuth2 from "../pages/auth/student/StudentAuth2";
-import AuthProtector from "../pages/auth/AuthProtector"; 
+import AuthProtector from "../pages/auth/AuthProtector";
 import ManageUsers from "../components/dashboards/admin/ManageUsers";
 import NotFound from "../pages/NotFound";
 import DashboardPageContainer from "../components/containers/DashboardPageContainer";
@@ -35,8 +35,7 @@ const router = createBrowserRouter([
         <Dashboard />
       </AuthProtector>
     ),
-    children: [ 
- 
+    children: [
       {
         path: "/dashboard/manage-courses",
         element: (
