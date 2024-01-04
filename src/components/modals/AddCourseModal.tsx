@@ -6,7 +6,7 @@ import Loading from "../loading/Loading";
 interface FormData {
   courseName: string;
   courseCode: number;
-  session: number  ;
+  session: number;
 }
 
 const AddCourseModal: React.FC<ModalProps> = ({ modalRef }) => {
@@ -15,22 +15,27 @@ const AddCourseModal: React.FC<ModalProps> = ({ modalRef }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
-  const [createCourse, {
-    error, data, isLoading
-  }] = usePostCourseMutation();
- const courseCreationError : FetchingError = error as FetchingError;
+  const [createCourse, { error, data, isLoading }] = usePostCourseMutation();
+  const courseCreationError: FetchingError = error as FetchingError;
   const handleForm = (data: FormData) => {
-  createCourse(data);
+    createCourse(data);
   };
 
-  if(isLoading) {
-    return (<Loading/>)
+  if (isLoading) {
+    return (
+      <div className="modal modal-top sm:modal-middle" ref={modalRef}>
+        <div className="modal-box">
+          <Loading />
+        </div>
+      </div>
+    );
   }
-  if(courseCreationError) {
+  if (courseCreationError) {
     console.log(courseCreationError?.data);
   }
-  if(data) {
+  if (data) {
     console.log(data);
+    modalRef?.current?.close();
   }
 
   return (

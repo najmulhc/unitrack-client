@@ -14,6 +14,7 @@ import TeacherAuth from "../pages/auth/teacher/TeacherAuth";
 import Loading from "../components/loading/Loading";
 import MyCourses from "../pages/dashboard/MyCourses";
 import ManageCourses from "../components/dashboards/admin/ManageCourses";
+import CoursePage from "../components/dashboards/admin/CoursePage";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,16 @@ const router = createBrowserRouter([
         element: (
           <AuthProtector role={undefined}>
             <MyCourses />
+          </AuthProtector>
+        ),
+      },
+      {
+        path: "/dashboard/manage-courses/course/:courseId",
+        element: (
+          <AuthProtector role="admin">
+            <DashboardPageContainer>
+              <CoursePage />
+            </DashboardPageContainer>
           </AuthProtector>
         ),
       },

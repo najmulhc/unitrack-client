@@ -118,6 +118,15 @@ export const appApi = createApi({
       }),
       invalidatesTags: ["courses"],
     }),
+    getCourses: builder.query({
+      query: () => "/courses/get-all-courses",
+      providesTags: ["courses"],
+    }),
+    getSingleCourse: builder.query({
+      query: ({
+        courseId
+      }: {courseId: string}) => `/courses/${courseId}`
+    })
   }),
 });
 
@@ -135,4 +144,6 @@ export const {
   useGetTeacherQuery,
   useUpdateTeacherMutation,
   usePostCourseMutation,
+  useGetCoursesQuery, 
+  useGetSingleCourseQuery
 } = appApi;
