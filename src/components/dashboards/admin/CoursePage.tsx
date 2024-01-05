@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useGetSingleCourseQuery } from "../../../redux/services/apiSlice";
 import Loading from "../../loading/Loading";
 import DeleteCourseModal from "../../modals/DeleteCourseModal";
+import AssignTeacherModal from "../../modals/AssignTeacherModal";
 
 const CoursePage = () => {
   const { courseId } = useParams() ;
@@ -11,7 +12,8 @@ const CoursePage = () => {
   });
 
   const course = data?.data?.course;
-  const modalRef = useRef<HTMLDialogElement>(null);
+  const modalRef1 = useRef<HTMLDialogElement>(null);
+  const modalRef2 = useRef<HTMLDialogElement>(null);
 
   if (data) {
     console.log(data.data);
@@ -29,7 +31,7 @@ const CoursePage = () => {
       <button
         className="btn btn-error"
         onClick={() => {
-          modalRef.current?.showModal();
+          modalRef1.current?.showModal();
         }}
       >
         Delete The course
@@ -40,14 +42,17 @@ const CoursePage = () => {
         </>
       ) : (
         <>
-          <button className="btn btn-primary">Assign Teacher</button>
+          <button className="btn btn-primary" onClick={() => {
+            modalRef2.current?.showModal();
+          }}>Assign Teacher</button>
         </>
       )}
       <DeleteCourseModal
         courseId={courseId as string}
         courseName={course.name}
-        modalRef={modalRef}
-      />
+        modalRef={modalRef1}
+      /> 
+      <AssignTeacherModal modalRef={modalRef2} />
     </div>
   );
 };

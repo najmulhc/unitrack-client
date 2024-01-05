@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router";
-import {
-  useDeleteCourseMutation,
-  useDeleteUserMutation,
-} from "../../redux/services/apiSlice";
+import { useDeleteCourseMutation } from "../../redux/services/apiSlice";
 import { ModalProps } from "../../types";
 import ModalContainer from "./ModalContainer";
 import Loading from "../loading/Loading";
@@ -18,26 +15,27 @@ const DeleteCourseModal: React.FC<DeleteCourseModalProps> = ({
   courseId,
 }) => {
   const [deleteCourse, { data, isLoading, error }] = useDeleteCourseMutation();
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
 
   if (isLoading) {
-   return (
+    return (
       <ModalContainer modalRef={modalRef}>
-         <Loading/>
+        <Loading />
       </ModalContainer>
-   )
+    );
   }
 
-  if(data) {
-   navigate("/dashboard/manage-courses")
+  if (data) {
+    navigate("/dashboard/manage-courses");
   }
- if(error) {
-   console.error(error)
- }
+  if (error) {
+    console.error(error);
+  }
   return (
     <ModalContainer modalRef={modalRef}>
       <h1>
-        Do you want to delete <span className="text-secondary">{courseName}</span>?{" "}
+        Do you want to delete{" "}
+        <span className="text-secondary">{courseName}</span>?{" "}
       </h1>
       <div className="flex justify-between gap-4">
         <button
