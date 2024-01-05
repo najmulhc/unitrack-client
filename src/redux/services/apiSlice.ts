@@ -86,7 +86,7 @@ export const appApi = createApi({
       invalidatesTags: ["students"],
     }),
     postStudentPhaseTwo: builder.mutation({
-      query: (data: { roll: string; session: "2020" | "2019" }) => ({
+      query: (data: { roll: string; session: "2020" | "2021" }) => ({
         url: "/students/auth-phase/two",
         method: "POST",
         body: data,
@@ -123,14 +123,27 @@ export const appApi = createApi({
       providesTags: ["courses"],
     }),
     getSingleCourse: builder.query({
-      query: ({
-        courseId
-      }: {courseId: string}) => `/courses/${courseId}`
-    })
+      query: ({ courseId }: { courseId: string }) => `/courses/${courseId}`,
+    }),
+    getAllTeachers: builder.query({
+      query: () => "/teachers/all",
+      providesTags: ["teachers"],
+    }),
+    deleteCourse: builder.mutation({
+      query: (data:{
+        courseId: string
+      }) => ({
+        url: `/courses/${data.courseId}`,
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["courses"],
+    }),
   }),
 });
 
 export const {
+  useGetAllTeachersQuery,
   useRegisterMutation,
   useGetUserQuery,
   useLoginMutation,
@@ -144,6 +157,7 @@ export const {
   useGetTeacherQuery,
   useUpdateTeacherMutation,
   usePostCourseMutation,
-  useGetCoursesQuery, 
-  useGetSingleCourseQuery
+  useGetCoursesQuery,
+  useGetSingleCourseQuery,
+  useDeleteCourseMutation
 } = appApi;

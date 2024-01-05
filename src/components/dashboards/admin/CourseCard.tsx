@@ -2,15 +2,16 @@ import { Link } from "react-router-dom";
 
 interface CourseCardProps {
   name: string;
-  session: "2020" | "2019";
+  session: "2020" | "2021";
   courseCode: number;
-  courseId: string
+  courseId: string;
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
   name,
   session,
-  courseCode, courseId
+  courseCode,
+  courseId,
 }) => {
   const course = {
     name: "Human Resource Management",

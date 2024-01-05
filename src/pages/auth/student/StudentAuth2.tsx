@@ -8,7 +8,7 @@ import Loading from "../../../components/loading/Loading";
 
 interface FormData {
   roll: string;
-  batch: "2020" | "2019";
+  batch: "2020" | "2021";
 }
 
 const StudentAuth2 = () => {
@@ -27,11 +27,11 @@ const StudentAuth2 = () => {
     navigate("/dashboard");
   }
   if (isLoading) {
-     return (
-       <main className="w-screen h-screen flex  justify-center items-center">
-         <Loading />
-       </main>
-     );
+    return (
+      <main className="w-screen h-screen flex  justify-center items-center">
+        <Loading />
+      </main>
+    );
   }
   if (error) {
     console.log(error);
@@ -89,12 +89,12 @@ const StudentAuth2 = () => {
             <select
               className="input input-bordered w-full"
               {...register("batch", {
-                required: "We need your batch information."
+                required: "We need your batch information.",
               })}
             >
               <option value="">Select an option</option>
               <option value="2020">2020</option>
-              <option value="2019">2019</option>
+              <option value="2021">2021</option>
             </select>
             {errors.batch && (
               <label className="label">

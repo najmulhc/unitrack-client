@@ -25,6 +25,5 @@ export interface DeleteUserProps {
 }
 export interface ModalProps {
   modalRef: RefObject<HTMLDialogElement>;
-  data?: string;
-  deletedUser?: DeleteUserProps;
+  children?: React.ReactNode;
 }

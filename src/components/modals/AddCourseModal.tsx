@@ -123,7 +123,7 @@ const AddCourseModal: React.FC<ModalProps> = ({ modalRef }) => {
             >
               <option value="">Select an option</option>
               <option value="2020">2020</option>
-              <option value="2019">2019</option>
+              <option value="2021">2021</option>
             </select>
             {errors.session && (
               <label className="label">
