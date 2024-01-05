@@ -52,7 +52,7 @@ const CoursePage = () => {
         courseName={course.name}
         modalRef={modalRef1}
       /> 
-      <AssignTeacherModal modalRef={modalRef2} />
+      <AssignTeacherModal modalRef={modalRef2} courseId={courseId as string} />
     </div>
   );
 };

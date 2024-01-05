@@ -1,16 +1,22 @@
 import { useForm } from "react-hook-form";
-import { useGetAllTeachersQuery } from "../../redux/services/apiSlice";
+import {
+  useAssignTeacherMutation,
+  useGetAllTeachersQuery,
+} from "../../redux/services/apiSlice";
 import { ModalProps, TeacherType } from "../../types";
 import Loading from "../loading/Loading";
 import ModalContainer from "./ModalContainer";
 
-interface AssignTeacherModalProps extends ModalProps {}
+interface AssignTeacherModalProps extends ModalProps {
+  courseId: string;
+}
+
 interface FormData {
   teacherId: string;
 }
 
 const AssignTeacherModal: React.FC<AssignTeacherModalProps> = ({
-  modalRef,
+  modalRef, courseId
 }) => {
   const { data: teacherData, isLoading, error } = useGetAllTeachersQuery({});
   const {
@@ -18,7 +24,7 @@ const AssignTeacherModal: React.FC<AssignTeacherModalProps> = ({
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
- 
+  const [assignTeacher] = useAssignTeacherMutation();
 
   const teachers = teacherData?.data.teachers;
 
@@ -38,7 +44,11 @@ const AssignTeacherModal: React.FC<AssignTeacherModalProps> = ({
   }
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    const { teacherId } = data;
+    assignTeacher({
+      courseId,
+      teacherId,
+    });
     modalRef.current.close();
   };
 
@@ -56,7 +66,7 @@ const AssignTeacherModal: React.FC<AssignTeacherModalProps> = ({
             })}
           >
             <option value="">Select a teacher</option>
-            {teachers.map((teacher:TeacherType) => (
+            {teachers.map((teacher: TeacherType) => (
               <option key={teacher._id} value={teacher._id}>
                 {teacher.firstName} {teacher.lastName}
               </option>

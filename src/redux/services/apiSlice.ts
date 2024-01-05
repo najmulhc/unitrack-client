@@ -2,7 +2,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const appApi = createApi({
   reducerPath: "appApi",
-  tagTypes: ["users", "teachers", "students", "courses", "resources", "user"],
+  tagTypes: [
+    "users",
+    "teachers",
+    "students",
+    "courses",
+    "resources",
+    "user",
+    "course",
+  ],
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_SERVER_URL,
     prepareHeaders: (headers) => {
@@ -124,20 +132,32 @@ export const appApi = createApi({
     }),
     getSingleCourse: builder.query({
       query: ({ courseId }: { courseId: string }) => `/courses/${courseId}`,
+      providesTags: ["course"],
     }),
     getAllTeachers: builder.query({
       query: () => "/teachers/all",
       providesTags: ["teachers"],
     }),
     deleteCourse: builder.mutation({
-      query: (data:{
-        courseId: string
-      }) => ({
+      query: (data: { courseId: string }) => ({
         url: `/courses/${data.courseId}`,
         method: "DELETE",
         body: data,
       }),
       invalidatesTags: ["courses"],
+    }),
+    assignTeacher: builder.mutation({
+      query: (data: {
+        courseId: string, 
+        teacherId: string
+      }) => ({
+        url: `/courses/assign-teacher/${data.courseId}`,
+        method: "PATCH",
+        body: {
+          teacherId: data.teacherId,
+        },
+      }),
+      invalidatesTags: ["course"]
     }),
   }),
 });
@@ -159,5 +179,6 @@ export const {
   usePostCourseMutation,
   useGetCoursesQuery,
   useGetSingleCourseQuery,
-  useDeleteCourseMutation
+  useDeleteCourseMutation,
+  useAssignTeacherMutation
 } = appApi;
