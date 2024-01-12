@@ -1,23 +1,21 @@
-import { useSelector } from "react-redux";
-import { Store } from "../../../redux/store";
+import { Link } from "react-router-dom";
 import DashboardContainer from "../../containers/DashboardContainer";
-import { useNavigate } from "react-router";
 
 const UnassignedDashboard = () => {
-  const navigate = useNavigate();
-  const { role } = useSelector((state: Store) => state.role);
   return (
     <DashboardContainer>
-      <main>
-        <h1>{role} Dashboard</h1>
-        <button
-          className="btn btn-secondary"
-          onClick={() => {
-            navigate("/be-an-admin");
-          }}
-        >
-          Set To admin
-        </button>
+      <main className="w-screen h-screen bg-neutral flex justify-center items-center">
+        <div className="prose">
+          <h1>
+            Welcome to <b>Unitracks</b>!
+          </h1>
+          <p>
+            Please wait until an admin assigns your role. or{" "}
+            <Link className="text-success" to="/be-an-admin">
+              be an admin.
+            </Link>
+          </p>
+        </div>
       </main>
     </DashboardContainer>
   );

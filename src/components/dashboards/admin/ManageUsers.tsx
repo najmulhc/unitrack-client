@@ -25,8 +25,8 @@ const ManageUsers = () => {
   }
 
   return (
-    <>
-      <h1 className="text-center font-semibold text-2xl my-4">Manage Users</h1>
+    <div className="prose max-w-none">
+      <h1 className="text-center">Manage Users</h1>
       <table className="table table-zebra min-w-[25vw] border border-primary">
         <thead>
           <tr>
@@ -78,8 +78,14 @@ const ManageUsers = () => {
             ))}
         </tbody>
       </table>
-      <DeleteUserModal modalRef={modalRef} deletedUser={deletedUser} />
-    </>
+      <DeleteUserModal
+        modalRef={modalRef}
+        deletedUser={{
+          email: deletedUser?.email as string,
+          _id: deletedUser?._id as string,
+        }}
+      />
+    </div>
   );
 };
 
