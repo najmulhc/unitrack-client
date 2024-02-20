@@ -1,26 +1,17 @@
-import { H1, H2, P, Span, Title } from "./Typography";
+import MenuItem from "./components/MenuItem";
+import CoursesIcon from "./icons/CoursesIcon";
+import HomeIcon from "./icons/HomeIcon";
 import SettingsIcon from "./icons/SettingsIcon";
- 
 import TeachersIcon from "./icons/TeachersIcon";
 
 const ReleaseHome = () => {
   return (
-    <main>
-      <Title className=""> the Title of the course</Title>
-      <H1>Heading one of the page</H1>
-      <H2> Heading Two of the page</H2>
-      <P>
-        Paragraphs lorem ipsum dolor sit amet for teh quidfasdf dwafadsf afewr
-        lakjnf
-      </P>
-      <Span>Span test</Span>
-      <SettingsIcon
-        width={"1.5rem"}
-        height={"1.5rem"}
-        color="red"
-        className="w-6 h-6 hover:fill-green-400"
-      />
-    </main>
+    <div className="w-full bg-[#44475A]  flex justify-between items-center px-4 py-2 z-50 fixed bottom-0">
+      <MenuItem Icon={HomeIcon} title="Home" href="/settings" />
+      <MenuItem Icon={CoursesIcon} title="Courses" href="/settings" />
+      <MenuItem Icon={TeachersIcon} title="Teachers" href="/settings" />
+      <MenuItem Icon={SettingsIcon} title="Settings" href="/settings" />
+    </div>
   );
 };
 
