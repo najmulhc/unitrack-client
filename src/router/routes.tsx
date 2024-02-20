@@ -15,6 +15,7 @@ import Loading from "../components/loading/Loading";
 import MyCourses from "../pages/dashboard/MyCourses";
 import ManageCourses from "../components/dashboards/admin/ManageCourses";
 import CoursePage from "../components/dashboards/admin/CoursePage";
+import Course from "../pages/dashboard/Course";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,14 @@ const router = createBrowserRouter([
               <CoursePage />
             </DashboardPageContainer>
           </AuthProtector>
+        ),
+      },
+      {
+        path: "/dashboard/course/:courseId",
+        element: (
+          <DashboardPageContainer>
+            <Course />
+          </DashboardPageContainer>
         ),
       },
     ],

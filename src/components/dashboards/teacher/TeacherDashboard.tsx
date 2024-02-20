@@ -10,7 +10,11 @@ const TeacherDashboard = () => {
   const teacher = data?.data?.teacher;
   const authStage = teacher?.authStage;
   if (isLoading) {
-    return <Loading />;
+    return (
+      <DashboardContainer>
+        <Loading/>
+      </DashboardContainer>
+    );
   }
   if (authStage === "one") {
     navigate("/teacher/register");

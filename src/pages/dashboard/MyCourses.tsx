@@ -18,7 +18,7 @@ const MyCourses = () => {
       return <MyCoursesStudent />;
     } else if (role === "teacher") {
       return <MyCoursesTeacher />;
-    }
+    } 
   }
 };
 

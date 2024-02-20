@@ -28,7 +28,7 @@ const CoursePage = () => {
   return (
     <main className="prose max-w-none">
       <section>
-        <h1 className="m-0 p-0">{course.name}</h1>
+         
         <div className="mt-0 pt-0 flex justify-between items-center  border-b-primary border-b pb-2 ">
           {" "}
           {course.teacher ? (

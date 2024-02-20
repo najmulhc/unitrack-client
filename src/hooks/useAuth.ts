@@ -78,6 +78,8 @@ const useAuth = () => {
     localStorage.removeItem("authToken");
     navigate("/");
   };
+
+ 
   return { signUp, login, authError, loginWithToken, logOut };
 };
 
