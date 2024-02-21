@@ -1,12 +1,11 @@
-import { Title } from "./Typography";
 import Menubar from "./components/Menubar";
+import Notifications from "./components/Notifications";
 
- 
 const ReleaseHome = () => {
   return (
     <>
-      <div>
-        <Title>Welcome to the Home page</Title>
+      <div className="p-4">
+        <Notifications />
       </div>
       <Menubar />
     </>
