@@ -17,7 +17,7 @@ const CourseCard = ({ title, teacher, _id }: CourseCardProps) => {
       <Button
         fullWidth={true}
         href={`/course/${_id}`}
-        className="bg-[#FFB86C] text-[#282A36] hover:bg-[#a57745]"
+        className="bg-[#FFB86C] text-[#282A36] hover:bg-[#a57745] block "
       >
         Course Detail
       </Button>

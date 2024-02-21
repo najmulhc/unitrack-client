@@ -54,7 +54,7 @@ export const Button = ({
     return (
       <a
         href={href}
-        className={`text-[1rem] text-[${textColor}] rounded py-2 px-6 font-normal bg-[#${backgroundColor}] hover:bg-[${hoverBackroundColor}] hover:text-[${hoverTextColor}] ${
+        className={`text-[1rem] text-center text-[${textColor}] rounded py-2 px-6 font-normal bg-[#${backgroundColor}] hover:bg-[${hoverBackroundColor}] hover:text-[${hoverTextColor}] ${
           fullWidth && "w-full"
         } ${className}`}
       >
@@ -65,7 +65,7 @@ export const Button = ({
   return (
     <button
       onClick={() => onClick && onClick()}
-      className={`text-[1rem]  rounded py-2 px-6 font-normal ${
+      className={`text-[1rem] text-center rounded py-2 px-6 font-normal ${
         fullWidth && "w-full" } ${className}`}
     >
       {children}
