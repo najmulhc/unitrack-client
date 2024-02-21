@@ -1,17 +1,34 @@
-import MenuItem from "./components/MenuItem";
-import CoursesIcon from "./icons/CoursesIcon";
-import HomeIcon from "./icons/HomeIcon";
-import SettingsIcon from "./icons/SettingsIcon";
-import TeachersIcon from "./icons/TeachersIcon";
+import { Button, H1, Span } from "./Typography";
+import CourseCard from "./components/CourseCard";
+import Menubar from "./components/Menubar";
 
 const ReleaseHome = () => {
+  const courses = [
+    {
+      title: "Introduction to Business",
+      teacher: "John Doe",
+      _id: ",ktjrherjmkgfdsfr",
+    },
+    {
+      title: "Financial Management",
+      teacher: "Md. Abul Kashem",
+      _id: "69oiu7y6543e45678u",
+    },
+  ];
   return (
-    <div className="w-full bg-[#44475A]  flex justify-between items-center px-4 py-2 z-50 fixed bottom-0">
-      <MenuItem Icon={HomeIcon} title="Home" href="/settings" />
-      <MenuItem Icon={CoursesIcon} title="Courses" href="/settings" />
-      <MenuItem Icon={TeachersIcon} title="Teachers" href="/settings" />
-      <MenuItem Icon={SettingsIcon} title="Settings" href="/settings" />
-    </div>
+    <>
+      <div className="w-full p-4 grid grid-cols-1 gap-4">
+        {courses.map((course) => (
+          <CourseCard
+            key={course._id}
+            title={course.title}
+            teacher={course.teacher}
+            _id={course._id}
+          />
+        ))}
+      </div>
+      <Menubar />
+    </>
   );
 };
 
