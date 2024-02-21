@@ -1,5 +1,4 @@
-import React from "react";
-import { ModalProps } from "../../types"; 
+import { ModalProps } from "../../types";
 
 const ModalContainer: React.FC<ModalProps> = ({ modalRef, children }) => {
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import Menubar from "../components/Menubar";
 import CourseCard from "../components/CourseCard";
 import { Button, H1 } from "../Typography";

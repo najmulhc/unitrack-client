@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetUserQuery } from "../../redux/services/apiSlice";
 import { useNavigate } from "react-router";
 import { User } from "../../types";

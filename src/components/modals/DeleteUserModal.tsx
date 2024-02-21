@@ -1,4 +1,3 @@
-import React from "react";
 import { ModalProps } from "../../types";
 import { useDeleteUserMutation } from "../../redux/services/apiSlice";
 import ModalContainer from "./ModalContainer";
@@ -15,14 +14,14 @@ const DeleteUserModal: React.FC<DeleteUserModalProps> = ({
   modalRef,
   deletedUser,
 }) => {
-  const [deleteUser, { data , isLoading}] = useDeleteUserMutation();
+  const [deleteUser, { data, isLoading }] = useDeleteUserMutation();
 
-  if(isLoading) {
+  if (isLoading) {
     return (
-      <ModalContainer modalRef={modalRef} >
-        <Loading/>
+      <ModalContainer modalRef={modalRef}>
+        <Loading />
       </ModalContainer>
-    )
+    );
   }
 
   if (data) {
@@ -48,7 +47,6 @@ const DeleteUserModal: React.FC<DeleteUserModalProps> = ({
             deleteUser({
               deletedUserId: deletedUser?._id as string,
             });
-            
           }}
         >
           Delete
