@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography"),require("daisyui")],
+  plugins: [],
   daisyui: {
-    themes: ['dracula']
-  }
+    themes: [""],
+  },
 };

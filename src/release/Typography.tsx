@@ -30,7 +30,7 @@ export const H2 = ({ children, className }: TypographyProps) => {
 };
 
 export const P = ({ children, className }: TypographyProps) => {
-  return <p className={`text-[1rem] font-normal ${className}`}>{children}</p>;
+  return <p className={`${className} text-[1rem] font-normal`}>{children}</p>;
 };
 
 export const Span = ({ children, className }: TypographyProps) => {
