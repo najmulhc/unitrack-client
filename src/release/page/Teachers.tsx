@@ -1,24 +1,25 @@
-import React from "react";
 import Menubar from "../components/Menubar";
 import PageContainer from "../components/PageContainer";
-import { H1, H2, P, Span } from "../Typography";
+import { H1, H2, P } from "../Typography";
 import PhoneIcon from "../icons/PhoneIcon";
 import MailIcon from "../icons/MailIcon";
 
 const Teachers = () => {
-    const teachers = [
-        {
-            name: "Md. Abul Kashem", 
-            position: "Professor", 
-            department: "Management Informaiton Systems",
-            university: "University of Dhaka", phone: "01711735930", email: "mkashem@du.ac.bd"
-        }
-    ]
-    const {name, position, department, university, phone, email} = teachers[0]
+  const teachers = [
+    {
+      name: "Md. Abul Kashem",
+      position: "Professor",
+      department: "Management Informaiton Systems",
+      university: "University of Dhaka",
+      phone: "01711735930",
+      email: "mkashem@du.ac.bd",
+    },
+  ];
+  const { name, position, department, university, phone, email } = teachers[0];
   return (
     <>
       <H1 className="text-center w-full text-[#e8def8] bg-[#4f378b] py-4">
-       Teachers
+        Teachers
       </H1>
       <PageContainer>
         <div className="bg-[#2b2930] p-2">

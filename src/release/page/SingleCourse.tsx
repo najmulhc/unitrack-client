@@ -1,19 +1,22 @@
- 
-import Menubar from "./components/Menubar";
-import PageContainer from "./components/PageContainer";
- 
+import Menubar from "../components/Menubar";
+import PageContainer from "../components/PageContainer"; 
 
-const ReleaseHome = () => {
+const SingleCourse = () => {
+  const course = {
+    title: "Introduction to Business", 
+    courseCode: 101, 
+    teacher: "Md. Abul Kashem", 
+    textbooks: [
+      {
+        title: "Fake business book 3rd edition", 
+        writer: "John Doe", 
+        url: ""
+      }
+    ]
+  }
   return (
     <>
       <PageContainer>
-        {" "}
-       
-        <div>
-          <label htmlFor="input">
-            <input type="text" name="" id="" />
-          </label>
-        </div>
         <section>
           <h2>course title</h2>
           <p>Teacher</p>
@@ -38,12 +41,11 @@ const ReleaseHome = () => {
               <button>visit</button>
             </div>
           </div>
-        </section>{" "}
+        </section>
       </PageContainer>
-
       <Menubar />
     </>
   );
 };
 
-export default ReleaseHome;
+export default SingleCourse;

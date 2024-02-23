@@ -30,11 +30,11 @@ const Notifications = () => {
       <div className="flex flex-col gap-4 my-4">
         {notifications.map((notification) => (
           <div
-            className="w-full bg-[#50fa7b] bg-opacity-10 p-4 rounded-sm"
+            className="w-full bg-[#2b2930] bg-opacity-100 p-4 rounded-sm"
             key={notification.text}
           >
             <P>{notification.text}</P>
-            <Span className="text-[#50fa7b]">{notification.creator}</Span>
+            <Span className="text-[#d0bcff]">{notification.creator}</Span>
           </div>
         ))}
       </div>{" "}
